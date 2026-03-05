@@ -1,0 +1,1169 @@
+_id: lt
+_name: Lietuvių
+actions:
+  callTaker:
+    callQuerySaveError: "Klaida saugant skambučių užklausas: {err}"
+    callSaveError: "Nepavyko išsaugoti skambučio: {err}"
+    checkSessionError: "Klaida nustatant autentifikacijos sesiją: {err}"
+    couldNotFindCallError: Nepavyko rasti skambučio. Atšaukiamas užklausų išsaugojimas.
+    fetchCallsError: "Klaida gaunant skambučius: {err}"
+    queryFetchError: "Klaida gaunant užklausas: {err}"
+  fieldTrip:
+    addNoteError: "Klaida pridedant ekskursijos pastabą:"
+    confirmOverwriteItineraries: |
+      Šis veiksmas perrašys anksčiau suplanuotą {outbound, select,
+          true {išvykimo}
+          other {grįžimo}
+        } maršrutą šiai užklausai. Ar norite tęsti?
+    deleteItinerariesError: "Klaida trinant ekskursijos planą:"
+    deleteNoteError: "Klaida trinant ekskursijos pastabą:"
+    editSubmitterNotesError: "Klaida redaguojant pateikėjo pastabas:"
+    fetchFieldTripError: "Klaida gaunant ekskursiją: {err}"
+    fetchFieldTripsError: "Klaida gaunant ekskursijas: {err}"
+    fetchTripsForDateError: "Klaida gaunant keliones ekskursijos datai: {err}"
+    incompatibleTripDateError: >-
+      Suplanuotos kelionės data ({tripDate}) nesutampa su prašoma kelionės diena
+      ({requestDate})
+    itineraryCapacityError: >-
+      Nepavyko išsaugoti plano: dėl nepakankamo vietų skaičiaus viename ar
+      keliuose transporto priemonėse šis planas negali būti išsaugotas.
+      Prašome iš naujo planuoti kelionę.
+    maxTripRequestsExceeded: Viršytas kelionių užklausų skaičius be tinkamų rezultatų
+    saveItinerariesError: "Nepavyko išsaugoti maršrutų: {err}"
+    setDateError: "Klaida nustatant datą:"
+    setGroupSizeError: "Klaida nustatant grupės dydį:"
+    setPaymentError: "Klaida nustatant mokėjimo informaciją:"
+    setRequestStatusError: "Klaida nustatant užklausos būseną:"
+  location:
+    deniedAccessAlert: >
+      Prieiga prie jūsų vietos yra užblokuota.
+
+      Norėdami naudoti dabartinę vietą, įjunkite vietos nustatymo leidimus
+      naršyklėje ir įkelkite puslapį iš naujo.
+    geolocationNotSupportedError: Jūsų naršyklė nepalaiko geografinės padėties nustatymo
+    unknownPositionError: Nežinoma klaida nustatant padėtį
+    userDeniedPermission: Vartotojas atsisakė leidimo
+  map:
+    currentLocation: (Dabartinė vieta)
+  user:
+    accountDeleted: Jūsų vartotojo paskyra ({email}) buvo ištrinta.
+    authTokenError: Klaida gaunant autorizacijos prieigos raktą.
+    confirmDeleteMonitoredTrip: Ar norite pašalinti šią kelionę?
+    confirmDeletePlace: Ar norite pašalinti šią vietą?
+    emailVerificationResent: El. pašto patvirtinimo žinutė buvo išsiųsta iš naujo.
+    genericError: "Įvyko klaida: {err}"
+    getDependentUserInfoFailed: Klaida gaunant judrumo profilio informaciją.
+    itineraryExistenceCheckFailed: Klaida tikrinant, ar pasirinkta kelionė yra įmanoma.
+    mustAcceptTermsToSavePlace: Norėdami išsaugoti vietas, priimkite naudojimosi sąlygas (skiltyje „Mano paskyra").
+    mustBeLoggedInToSavePlace: Norėdami išsaugoti vietas, prisijunkite.
+    placeDeleted: Jūsų vieta buvo ištrinta.
+    placeRemembered: Šios vietos nustatymai buvo išsaugoti.
+    preferencesSaved: Jūsų nuostatos buvo išsaugotos.
+    smsInvalidCode: Įvestas kodas yra neteisingas. Bandykite dar kartą.
+    smsResendThrottled: >-
+      Patvirtinimo SMS buvo išsiųsta nurodytu telefono numeriu mažiau nei prieš
+      minutę. Bandykite dar kartą po kelių akimirkų.
+    smsVerificationFailed: >-
+      Jūsų telefono nepavyko patvirtinti. Galbūt įvestas kodas baigė galioti.
+      Prašome paprašyti naujo kodo ir bandyti dar kartą.
+    tripDeleted: Jūsų kelionė buvo ištrinta.
+common:
+  coordinates: "{lat}, {lon}"
+  currentlySelected: " (Šiuo metu pasirinkta)"
+  dateExpressions:
+    today: Šiandien
+    tomorrow: Rytoj
+    yesterday: Vakar
+  daysOfWeek:
+    friday: Penktadienis
+    monday: Pirmadienis
+    saturday: Šeštadienis
+    sunday: Sekmadienis
+    thursday: Ketvirtadienis
+    tuesday: Antradienis
+    wednesday: Trečiadienis
+  daysOfWeekCompact:
+    friday: Pn
+    monday: Pr
+    saturday: Š
+    sunday: S
+    thursday: K
+    tuesday: A
+    wednesday: T
+  daysOfWeekPlural:
+    friday: Penktadieniais
+    monday: Pirmadieniais
+    saturday: Šeštadieniais
+    sunday: Sekmadieniais
+    thursday: Ketvirtadieniais
+    tuesday: Antradieniais
+    wednesday: Trečiadieniais
+  forms:
+    back: Atgal
+    cancel: Atšaukti
+    close: Uždaryti
+    defaultValue: "{value} (numatytasis)"
+    edit: Redaguoti
+    error: klaida!
+    finish: Baigti
+    loading: Kraunama
+    next: Toliau
+    "no": "Ne"
+    print: Spausdinti
+    save: Išsaugoti
+    startOver: Pradėti iš naujo
+    submitting: Pateikiama…
+    "yes": "Taip"
+  itineraryDescriptions:
+    fareUnknown: Bilieto informacijos nėra
+    noDefaultFareTypeConfigured: Taikomi keli tarifai
+    noItineraryToDisplay: Nėra maršruto rodyti.
+    relativeCo2: |
+      {co2} {isMore, select, true {daugiau} other {mažiau} } CO₂ nei vairuojant vienam
+    timeStartEnd: "{start} – {end}"
+  linkOpensNewWindow: (Atidaroma naujame lange)
+  modes:
+    bicycle_rent: Dviračių nuoma
+    bike: Dviratis
+    bus: Autobusas
+    cable_car: Lynų keliukas
+    car: Automobilis
+    car_park: Automobilis ir viešasis transportas
+    drive: Vairuoti
+    ferry: Keltas
+    flex: Lankstūs maršrutai
+    funicular: Funikulierius
+    gondola: Gondola
+    micromobility: Elektrinis paspirtukas
+    micromobility_rent: Elektrinis paspirtukas
+    rail: Geležinkelis
+    rent: Nuomos galimybės
+    subway: Metro
+    tram: Tramvajus
+    transit: Viešasis transportas
+    trolleybus: Troleibusas
+    walk: Pėsčiomis
+  notifications:
+    email: el. paštu
+    push: pranešimais
+    sms: SMS
+  places:
+    custom: kita
+    dining: restoranas
+    home: namai
+    work: darbas
+  routing:
+    routeAndNumber: Maršrutas {routeId}
+  searchForms:
+    click: spustelėkite
+    enterDestination: Įveskite paskirties vietą arba {mapAction} žemėlapyje…
+    enterStartLocation: Įveskite išvykimo vietą arba {mapAction} žemėlapyje…
+    tap: palieskite
+  time:
+    duration:
+      aFewSeconds: kelios sekundės
+      nDays: "{days, plural, =1 {viena diena} other {# dienos}}"
+      nHours: "{hours, plural, =1 {viena valanda} other {# valandos}}"
+      nMinutes: "{minutes, plural, =1 {viena minutė} other {# minutės}}"
+    durationAgo: "prieš {duration}"
+    tripDurationFormat: >-
+      {hours, plural, =0 {} other {# val. }}{minutes} min. { seconds, plural, =0 {}
+      other {# sek.}}
+components:
+  A11yPrefs:
+    accessibilityRoutingByDefault: Pagal numatytuosius nustatymus teikti pirmenybę prieinamoms kelionėms
+  AccountSetupFinishPane:
+    message: >-
+      Jūsų pakeitimai išsaugoti. Galite pradėti planuoti keliones. Spustelėkite
+      mygtuką „Baigti", kad grįžtumėte į kelionių planuoklį.
+  AddPlaceButton:
+    addPlace: Pridėti vietą
+    needOriginDestination: Nurodykite išvykimo/paskirties vietą, kad galėtumėte pridėti tarpines stotelės
+    tooManyPlaces: Pasiektas maksimalus tarpinių vietų skaičius
+  AdvancedOptions:
+    bannedRoutes: Pasirinkite draudžiamus maršrutus…
+    preferredRoutes: Pasirinkite pageidaujamus maršrutus...
+  AfterSignInScreen:
+    mainTitle: Nukreipiama...
+    message: >-
+      Jei puslapis neįkeliamas po kelių sekundžių, <redirectLink>spustelėkite
+      čia</redirectLink>.
+  AppMenu:
+    callHistory: Skambučių istorija
+    closeMenu: Uždaryti meniu
+    fieldTrip: Ekskursija
+    mailables: Pašto siuntos
+    networkConnectionLost: Ryšys su tinklu prarastas
+    networkConnectionRestored: Ryšys su tinklu atstatytas
+    openMenu: Atidaryti meniu
+    skipNavigation: Praleisti navigaciją
+  BackToTripPlanner:
+    backToTripPlanner: Grįžti į kelionių planuoklį
+  BatchResultsScreen:
+    expandMap: Išplėsti žemėlapį
+    showResults: Rodyti rezultatus
+  BatchRoutingPanel:
+    shortTitle: Planuoti kelionę
+  BatchSearchScreen:
+    advancedHeader: Išplėstinės nuostatos
+    header: Planuokite savo kelionę
+    logInToSetDefault: Prisijunkite, kad nustatytumėte kaip numatytąjį
+    modeSelectorLabel: Pasirinkite kelionės būdą
+    moreOptions: Daugiau parinkčių
+    saveAndReturn: Išsaugoti ir grįžti
+    saved: Išsaugota
+    setAsDefault: Nustatyti kaip numatytąjį
+    submodeSelectorLabel: Pasirinkite kelionės būdus ir potipius
+    tripOptions: Kelionės parinktys
+  BatchSettings:
+    destination: paskirties vieta
+    invalidModeSelection: >-
+      Negalima planuoti kelionės naudojant pasirinktus būdus. Bandykite įtraukti
+      viešąjį transportą į savo pasirinkimą.
+    origin: išvykimo vieta
+    planTripTooltip: Planuoti kelionę
+    validationMessage: "Norėdami suplanuoti kelionę, užpildykite šiuos laukus: {issues}"
+  BeforeSignInScreen:
+    mainTitle: Prisijungiama
+    message: >
+      Norint pasiekti šį puslapį, reikia prisijungti. Palaukite, kol būsite
+      nukreipti į prisijungimo puslapį...
+  CallTakerPanel:
+    advancedOptions: Išplėstinės parinktys
+    groupSize: "Grupės dydis:"
+    intermediateDestination: Įveskite tarpinę paskirties vietą
+  CompanionsPane:
+    addNewCompanion: Pridėti naują kelionės draugą
+    companionAlreadyAdded: Jau turite kelionės draugą su el. paštu {email}
+    companionExplanation: >
+      Pakvieskite esamą G-MAP vartotoją tapti kelionės draugu įvesdami jo
+      el. paštą. Kai jis priims, jo būsena pasikeis į „patvirtintas" ir galėsite
+      dalintis kelionės būsena bei planuoti keliones pagal vienas kito judrumo profilį.
+    confirmDeleteCompanion: Ar norite ištrinti kelionės draugą {email}?
+    currentCompanionsLabel: "Dabartiniai kelionės draugai:"
+    deleteCompanion: Ištrinti {email}
+    noCompanions: Neturite jokių kelionės draugų.
+    submitNewCompanion: Siųsti kvietimą
+    title: Kelionės draugai
+  DateTimeOptions:
+    arriveBy: Atvykti iki
+    departAt: Išvykti
+    now: Dabar
+  DateTimePreview:
+    arriveAt: Atvykti {arriveTime, time, short}
+    dayLastWeek: Praėjusį {formattedDayOfWeek}
+    departAt: Išvykti {departTime, time, short}
+    editDepartOrArrival: Redaguoti išvykimo ar atvykimo laiką
+    leaveNow: Išvykti dabar
+  DateTimeScreen:
+    header: Nustatyti datą/laiką
+  DefaultItinerary:
+    clickDetails: Spustelėkite, norėdami peržiūrėti detales
+    multiModeSummary: "{accessMode} + {transitMode}"
+    nonTransit: Alternatyvios parinktys
+  DeleteUser:
+    deleteMyAccount: Ištrinti mano paskyrą
+  ErrorMessage:
+    header: Nepavyko suplanuoti kelionės
+    warning: Įspėjimas
+  ExistingAccountDisplay:
+    a11y: Prieinamumas
+    mainTitle: Mano nustatymai
+    notifications: Pranešimai
+    places: Išsaugotos vietos
+    terms: Sąlygos
+  FavoritePlaceList:
+    addAnotherPlace: Pridėti kitą vietą
+    description: "Pridėkite dažnai lankomas vietas, kad sutaupytumėte laiko planuodami keliones:"
+    editThisPlace: Redaguoti šią vietą
+    setAddressForPlaceType: Nustatyti savo {placeType} adresą
+  FavoritePlaceScreen:
+    addNewPlace: Pridėti naują vietą
+    charactersOverLimit: >-
+      {chars, plural, one {# simbolis viršija limitą} other {# simboliai viršija
+      limitą} }
+    charactersRemaining: >-
+      {chars, plural, one {# simbolis liko} other {# simboliai liko}
+      }
+    editPlace: Redaguoti {placeName}
+    editPlaceGeneric: Redaguoti vietą
+    invalidAddress: Nustatykite šios vietos buvimo vietą.
+    invalidName: Įveskite šios vietos pavadinimą.
+    nameAlreadyUsed: >-
+      Šis pavadinimas jau naudojamas kitai vietai. Įveskite kitą pavadinimą.
+    nameTooLong: Pavadinimas turi būti trumpesnis nei {char} simbolių.
+    placeNotFound: Vieta nerasta
+    placeNotFoundDescription: Atsiprašome, prašoma vieta nerasta.
+  FormNavigationButtons:
+    ariaLabel: Formos navigacija
+  ItinerarySummary:
+    itineraryDetails: Maršruto detalės
+  LocationSearch:
+    enterLocation: Įveskite vietą
+    setDestination: Nustatyti paskirties vietą
+    setOrigin: Nustatyti išvykimo vietą
+  MapLayers:
+    bike-rental: "{companies} nuomojami dviračiai"
+    car-rental: Automobilių nuomos vietos
+    micromobility-rental: "{companies} elektriniai paspirtukai"
+    park-and-ride: Automobilių stovėjimas ir viešasis transportas
+    satellite: Palydovinis vaizdas
+    shared-vehicles: Bendros transporto priemonės
+    stations: Tranzito stotys
+    stops: Tranzito stotelės
+    streets: Gatvės
+  MapillaryFrame:
+    title: Gatvės vaizdas
+  MetroUI:
+    arriveAt: Atvykstate
+    fare: "{fare}"
+    itineraryDescription: "{time} maršrutas naudojant {routes}"
+    itinerarySummary: nuo {stopName} | {cost}
+    leaveAt: Išvykstate
+    multipleOptions: Kelios galimybės
+    orAlternatives: arba kiti maršrutai ta pačia kryptimi
+    originallyScheduledTime: (iš pradžių numatyta {originalTime})
+    singleModeItineraryDescription: "{time} {mode} maršrutas"
+    timeWalking: "{time} pėsčiomis"
+  MobilityProfile:
+    DevicesPane:
+      devices:
+        cane: Lazda
+        crutches: Ramentai
+        electric wheelchair: Elektrinis vežimėlis
+        manual walker: Rankinis vaikštynė
+        manual wheelchair: Rankinis/tradicinis vežimėlis
+        mobility scooter: Judrumo skuteris
+        none: Jokio pagalbinio prietaiso
+        service animal: Pagalbinis gyvūnas
+        stroller: Vaikiškas vežimėlis
+        wheeled walker: Vežimėlis su ratukais
+        white cane: Baltoji lazda
+      prompt: Ar reguliariai naudojatės judrumo pagalbine priemone? (Pažymėkite visus tinkančius)
+    LimitationsPane:
+      mobilityPrompt: >-
+        Ar turite judrumo apribojimų, dėl kurių vaikštote lėčiau ar atsargiau
+        nei kiti žmonės?
+      visionLimitations:
+        legally-blind: Teisiškai aklasis
+        low-vision: Silpnaregis
+        none: Nėra
+      visionPrompt: Ar turite regos apribojimų?
+    MobilityPane:
+      button: Redaguoti savo judrumo profilį
+      header: Judrumo profilis
+      mobilityDevices: "Judrumo prietaisai: "
+      mobilityLimitations: "Judrumo apribojimai: "
+      planTripDescription: >-
+        Jei turite kelionės draugą, galite pasirinkti planuoti šią kelionę
+        pagal jo judrumo profilį.
+      visionLimitations: "Regos apribojimai: "
+    dropdownLabel: "Vartotojo judrumo profilis:"
+    intro: >-
+      Atsakykite į kelis klausimus, kad pritaikytume kelionių planavimo patirtį
+      pagal jūsų poreikius ir pageidavimus.
+    myself: Aš pats
+    title: Nustatykite savo judrumo profilį
+  NarrativeItinerariesHeader:
+    changeSortDir: Keisti rūšiavimo kryptį
+    howToFindResults: >-
+      Norėdami peržiūrėti rezultatus, žiūrėkite antraštę „Rasti maršrutai" žemiau.
+      Norėdami peržiūrėti maršruto detales, pasirinkite laiko mygtuką.
+    itinerariesFound: >-
+      {itineraryNum, plural, one {# maršrutas rastas} other {# maršrutai rasti}
+      }
+    resultsSortedBy: >-
+      Kelionių rezultatai šiuo metu rūšiuojami pagal {sortSelected}. Norėdami
+      pakeisti rūšiavimo būdą, naudokite mygtuką „Rūšiuoti rezultatus" žemiau.
+    searching: Ieškoma jūsų galimybių...
+    selectArrivalTime: Atvykimo laikas
+    selectBest: Geriausia galimybė
+    selectCost: Kaina
+    selectDepartureTime: Išvykimo laikas
+    selectDuration: Trukmė
+    selectFare: Bilieto kaina
+    selectWalkTime: Ėjimo laikas
+    sortResults: Rūšiuoti rezultatus
+    viewAll: Peržiūrėti visas galimybes
+  NavLoginButton:
+    help: Pagalba
+    myAccount: Mano paskyra
+    signIn: Prisijungti
+    signOut: Atsijungti
+  NearbyView:
+    bikeRentalStation: Dviračių nuomos stotelė
+    bikesAvailable: "{bikesAvailable, plural, one {# dviratis} other {# dviračiai}} prieinami"
+    companyBicycle: "{company} dviratis"
+    companyScooter: "{company} paspirtukas"
+    distanceAway: "{localizedDistanceString} atstumu"
+    error: Įvyko klaida įkeliant netoliese esančias paslaugas.
+    errorHeader: Klaida
+    filterNearby: Filtruoti netoliese esančius rezultatus
+    header: Netoliese esantys objektai
+    headsign: "{destination}"
+    nearbyListIntro: Sąrašas iš {count} netoliese esančių objektų.
+    nothingNearby: Netoliese nėra jokių vietų.
+    nothingNearbyHeader: Už diapazono ribų
+    searchNearby: Ieškoti netoliese...
+    spacesAvailable: "{spacesAvailable} laisvų vietų"
+  NewAccountWizard:
+    createNewAccount: Sukurti naują paskyrą
+    finish: Paskyros sąranka baigta!
+    notifications: Pranešimų nuostatos
+    places: Pridėkite savo išsaugotas vietas
+    verify: Patvirtinkite savo el. pašto adresą
+  NotFound:
+    description: Prašomas turinys neprieinamas.
+    header: Turinys nerastas
+  NotificationPrefsPane:
+    devicesRegistered: "{count, plural, one {# prietaisas} other {# prietaisai}} užregistruoti"
+    noDeviceForPush: Užregistruokite savo prietaisą naudodami mobiliąją programėlę, kad galėtumėte naudotis pranešimais.
+    notificationChannelPrompt: "Gauti pranešimus apie savo išsaugotas keliones per:"
+  OTP2ErrorRenderer:
+    LOCATION_NOT_FOUND:
+      body: >-
+        {inputFields} {inputFieldsCount, plural, =0 {} one {vieta yra} other
+        {vietos yra}} netoli jokių gatvių.
+      header: Vieta nepasiekiama
+    NO_STOPS_IN_RANGE:
+      body: >-
+        {inputFields} {inputFieldsCount, plural, =0 {} one {vieta yra} other
+        {vietos yra}} netoli jokių viešojo transporto stotelių.
+      header: Stotelių diapazone nėra
+    NO_TRANSIT_CONNECTION:
+      body: >-
+        Pasirinktos dienos tarp jūsų išvykimo ir paskirties vietų nerasta jokio
+        viešojo transporto ryšio naudojant pasirinktus transporto priemonių tipus.
+      header: Maršrutų nerasta
+    NO_TRANSIT_CONNECTION_IN_SEARCH_WINDOW:
+      body: >-
+        Viešojo transporto ryšys rastas, tačiau jis yra už paieškos lango ribų.
+        Bandykite koreguoti paieškos langą naudodami pasirinktus transporto priemonių tipus.
+      header: Ryšio paieškos lange nėra
+    OTP_RR_TRIP_IN_PAST:
+      body: Vienas ar daugiau šių maršrutų baigiasi praeityje.
+      header: Kelionė jau įvyko
+    OUTSIDE_BOUNDS:
+      body: >-
+        {inputFields} {inputFieldsCount, plural, =0 {} one {vieta yra} other
+        {vietos yra}} ne kelionių planuoklio ribose.
+      header: Vieta už ribų
+    OUTSIDE_SERVICE_PERIOD:
+      body: >-
+        Nurodyta data yra už šiuo metu į kelionių planuoklį įkeltų duomenų diapazono.
+      header: Už aptarnavimo laikotarpio ribų
+    SYSTEM_ERROR:
+      body: Paieškos metu įvyko nežinoma klaida.
+      header: Kelionių planuoklio gedimas
+    WALKING_BETTER_THAN_TRANSIT:
+      body: Kelionė be viešojo transporto bus greitesnė nei juo naudojantis.
+      header: Viešasis transportas nėra greičiausias būdas atlikti šią kelionę
+    inputFields:
+      FROM: Išvykimo vieta
+      TO: Paskirties vieta
+  PhoneNumberEditor:
+    changeNumber: Keisti numerį
+    invalidCode: Įveskite 6 skaitmenis patvirtinimo kodui.
+    invalidPhone: Įveskite teisingą telefono numerį.
+    phoneNumberSubmitted: Telefono numeris {phoneNumber} sėkmingai pateiktas.
+    phoneNumberVerified: Telefono numeris {phoneNumber} sėkmingai patvirtintas.
+    placeholder: Įveskite savo telefono numerį
+    prompt: "Įveskite telefono numerį SMS pranešimams:"
+    requestNewCode: Prašyti naujo kodo
+    sendVerificationText: Siųsti patvirtinimo žinutę
+    smsConsent: >
+      Pateikdami telefono numerį, sutinkate gauti patvirtinimo ir kelionių
+      stebėjimo SMS žinutes. Gali būti taikomi papildomi jūsų telefono operatoriaus mokesčiai.
+    verificationCode: "Patvirtinimo kodas:"
+    verificationInstructions: >
+      Patikrinkite savo mobiliojo telefono SMS žinučių programėlę – turėtų būti
+      žinutė su patvirtinimo kodu. Įveskite kodą žemiau (kodas galioja 10 minučių).
+    verify: Patvirtinti
+    verifySms: >-
+      Prašome užbaigti patvirtinimo procesą, kad nustatytumėte SMS pranešimus.
+  Place:
+    deleteThisPlace: Ištrinti šią vietą
+    enterAlert: >
+      Įveskite išvykimo/paskirties vietą formoje (arba nustatykite spustelėdami žemėlapį)
+      ir spustelėkite pasirodžiusį žymeklį, kad nustatytumėte kaip {placeType} vietą.
+  PlaceEditor:
+    addressPrompt: "Adresas:"
+    genericLocationPlaceholder: Ieškoti vietos
+    locationPlaceholder: Ieškoti {placeName} vietos
+    locationTypePrompt: "Vietos tipas:"
+    nameExample: Mano kavinė
+    namePrompt: "Vietos pavadinimas:"
+  PlanFirstLastButtons:
+    first: Pirma
+    last: Paskutinė
+    next: Toliau
+    previous: Ankstesnė
+  PlanTripButton:
+    planTrip: Planuoti kelionę
+  PointPopup:
+    zoomToLocation: Priartinti į vietą
+  PrintLayout:
+    itinerary: Maršrutas
+    toggleMap: Rodyti/slėpti žemėlapį
+  RealtimeAnnotation:
+    delaysShownInResults: >
+      Jūsų kelionės rezultatai pakoreguoti pagal realaus laiko informaciją.
+      Įprastomis sąlygomis ši kelionė truktų {normalDuration} naudojant šiuos maršrutus: {routes}.
+    serviceUpdate: Paslaugų atnaujinimas
+  RealtimeStatusLabel:
+    early: "{minutes} anksčiau"
+    late: "{minutes} vėluoja"
+    onTime: laiku
+    scheduled: pagal tvarkaraštį
+  ResultsError:
+    backToSearch: Grįžti į paiešką
+  RouteDetails:
+    headsignTo: "{headsign} ({lastStop})"
+    moreDetails: Daugiau detalių
+    operatedBy: Valdo {agencyName}
+    selectADirection: Pasirinkite kryptį...
+    stopsTo: Kryptimi į
+  RouteViewer:
+    agencyFilter: Vežėjo filtras
+    allAgencies: Visi vežėjai
+    allModes: Visi būdai
+    details: " "
+    findARoute: Rasti maršrutą
+    header: Maršrutų peržiūra
+    modeFilter: Būdo filtras
+    noFilteredRoutesFound: Nė vienas maršrutas neatitinka jūsų filtro!
+    noRouteFilter: Šiuo metu maršrutų sąrašui nėra taikoma jokių filtrų.
+    openPatternViewer: Peržiūrėti maršruto detales
+    routesFilteredBy: "Šiuo metu maršrutų sąrašui taikomi šie filtrai: {list}."
+    shortTitle: Maršrutai
+    stopsInDirectionOfTravel: "Stotelės šia kelionės kryptimi:"
+    title: Maršrutų peržiūra
+  SaveTripButton:
+    cantSaveText: Negalima išsaugoti
+    cantSaveTooltip: >-
+      Galima stebėti tik maršrutus, apimančius viešąjį transportą ir
+      neapimančius nuomos ar taksi paslaugų.
+    saveTripText: Išsaugoti kelionę
+    signInText: Prisijunkite, kad išsaugotumėte kelionę
+    signInTooltip: Norėdami išsaugoti kelionę, prisijunkite.
+  SavedTripEditor:
+    deleteSavedTrip: Ištrinti
+    editSavedTrip: Redaguoti išsaugotą kelionę
+    readOnlyBanner: >-
+      {creator} sukūrė ir pridėjo jus prie šios kelionės. Todėl negalite atlikti
+      pakeitimų.
+    saveNewTrip: Išsaugoti naują kelionę
+    travelCompanions: Kelionės draugai
+    tripInformation: Kelionės informacija
+    tripNotFound: Kelionė nerasta
+    tripNotFoundDescription: Atsiprašome, prašoma kelionė nerasta.
+    tripNotifications: Kelionės pranešimai
+  SavedTripList:
+    alertTag: "{alert, plural, one {Peržiūrėti vieną įspėjimą} other {Peržiūrėti # įspėjimus}}"
+    fromTo: Nuo {from} iki {to}
+    myTrips: Mano kelionės
+    noSavedTrips: Neturite išsaugotų kelionių
+    noSavedTripsInstructions: Pirmiausia atlikite kelionės paiešką žemėlapyje.
+    pause: Pristabdyti
+    resume: Atnaujinti
+    unsnooze: Atjungti signalą
+  SavedTripScreen:
+    itineraryLoaded: Maršrutas įkeltas
+    itineraryLoading: Įkeliamas maršrutas
+    selectAtLeastOneDay: Pasirinkite bent vieną dieną stebėjimui.
+    tooManyTrips: >
+      Jau pasiekėte maksimalų penkių išsaugotų kelionių skaičių. Pašalinkite
+      nenaudojamas keliones iš išsaugotų kelionių ir bandykite dar kartą.
+    tripNameAlreadyUsed: Kita išsaugota kelionė jau naudoja šį pavadinimą. Pasirinkite kitą pavadinimą.
+    tripNameRequired: Įveskite kelionės pavadinimą.
+  SequentialPaneDisplay:
+    stepNumber: Žingsnis {step} iš {total}
+  SessionTimeout:
+    body: >-
+      Jūsų sesija baigsis per minutę. Paspauskite „Tęsti sesiją", kad išsaugotumėte
+      savo paiešką.
+    header: Sesija baigiasi!
+    keepSession: Tęsti sesiją
+  SimpleRealtimeAnnotation:
+    usingRealtimeInfo: Ši kelionė naudoja realaus laiko eismo ir vėlavimų informaciją
+  StackedPaneDisplay:
+    savePreferences: Išsaugoti nuostatas
+  StatusBadge:
+    invalid: Neteisingas
+    pending: Laukiama
+    verified: Patvirtintas
+  StopScheduleTable:
+    block: Blokas
+    departure: Išvykimas
+    destination: Į
+    route: Maršrutas
+  StopTimeCell:
+    imminentArrival: Tuoj atvyksta
+    realtime: Remiantis realaus laiko duomenimis
+    scheduled: Remiantis tvarkaraščio duomenimis
+  StopViewer:
+    displayStopId: "<strong>Stotelės ID</strong>: {stopId}"
+    findSchedule: Rasti tvarkaraštį pagal datą
+    flexStop: >-
+      Tai lankstaus maršruto stotelė. Transporto priemonės išlips ir paims
+      keleivius šioje lanksčioje zonoje pagal užsakymą. Gali tekti iš anksto
+      paskambinti dėl paslaugos šioje vietovėje.
+    forStop: stotelei {stopName}
+    header: Stotelių peržiūra
+    loadingText: Kraunama stotelė...
+    noStopsFound: Nurodytai datai nerasta stotelių tvarkaraščių.
+    operatorLogoAriaLabel: "{operatorName} stotelė:"
+    schedule: Tvarkaraštis
+    timezoneWarning: Išvykimo laikai rodomi {timezoneCode} laiko juostoje.
+    titleBarStopId: Stotelė {stopId}
+    viewNearby: Peržiūrėti netoliese
+    viewSchedule: Peržiūrėti tvarkaraštį
+    zoomToStop: Priartinti prie stotelės
+  SubNav:
+    languageSelector: Pasirinkti kalbą
+    languages: Kalbos
+    myAccount: Mano paskyra
+    selectALanguage: Pasirinkite kalbą
+    settings: Nustatymai
+    trips: Kelionės
+    userMenu: Profilio parinktys
+  SwitchButton:
+    defaultContent: Keisti
+    switchLocations: Keisti vietas
+  TermsOfUsePane:
+    confirmDeletionPrompt: >
+      Atšaukus sutikimą saugoti kelionių istoriją, ji bus ištrinta. Ar tikrai
+      norite tęsti?
+    mustAgreeToTerms: Norėdami tęsti, turite sutikti su naudojimosi sąlygomis.
+    termsOfServiceStatement: >
+      Patvirtinu, kad man yra bent 18 metų, ir perskaičiau bei sutinku su
+      kelionių planuoklio <termsOfUseLink>naudojimosi sąlygomis</termsOfUseLink>.
+    termsOfStorageStatement: >
+      Neprivaloma: sutinku, kad kelionių planuoklis saugotų mano istorines
+      suplanuotas keliones, siekiant pagerinti viešojo transporto paslaugas mano
+      vietovėje. <termsOfStorageLink>Daugiau informacijos...</termsOfStorageLink>
+  TransitVehicleOverlay:
+    in_transit_to: "Kita stotelė: {stop}"
+    incoming_at: "Artėja prie: {stop}"
+    stopped_at: Durys atidarytos stotelėje {stop}
+    travelingAt: Judama {milesPerHour} greičiu
+    vehicleName: Transporto priemonė {vehicleNumber}
+  TripBasicsPane:
+    checkingItineraryExistence: Tikrinama maršruto egzistavimas kiekvienai savaitės dienai...
+    indicatesRequiredFields: Laukai pažymėti žvaigždute (*) yra privalomi.
+    onlyOnDate: Tik {date, date, ::eeeee yyyyMMdd}
+    recurringEachWeek: Tam tikromis savaitės dienomis
+    tripDaysPrompt: Kuriomis dienomis vykstate šia kelione?
+    tripIsAvailableOnDaysIndicated: Jūsų kelionė prieinama aukščiau nurodytomis savaitės dienomis.
+    tripNamePrompt: "Įveskite šios kelionės pavadinimą:"
+    tripNotAvailableOnDay: Kelionė {repeatedDay} nepasiekiama
+    unsavedChangesExistingTrip: Jūsų kelionė dar neišsaugota. Jei išeisite, pakeitimai bus prarasti.
+    unsavedChangesNewTrip: Jūsų nauja kelionė dar neišsaugota. Jei išeisite, ji bus prarasta.
+  TripCompanionsPane:
+    companionLabel: "Kelionės draugas:"
+    observersLabel: "Stebėtojai, stebintys šią kelionę:"
+    primaryLabel: "Pagrindinis keliautojas: "
+  TripNotificationsPane:
+    advancedSettings: Išplėstiniai nustatymai
+    altRouteRecommended: Rekomenduojamas alternatyvus maršrutas ar persėdimo taškas
+    delaysAboveThreshold: Yra vėlavimų ar sutrikimų, viršijančių
+    howToReceiveAlerts: >
+      Norėdami gauti įspėjimus apie išsaugotas keliones, įjunkite pranešimus
+      paskyros nustatymuose ir bandykite išsaugoti kelionę dar kartą.
+    monitorThisTrip: "Stebėti šią kelionę prieš pradedant:"
+    notificationsTurnedOff: Jūsų paskyrai pranešimai išjungti.
+    notifyViaChannelWhen: "Pranešti man per {channel}, kai:"
+    oneHour: 1 valanda
+    realtimeAlertFlagged: Mano kelionėje yra pažymėtas realaus laiko įspėjimas
+    timeBefore: "{time} anksčiau"
+  TripPreviewLayout:
+    previewTrip: Peržiūrėti kelionę
+  TripStatus:
+    alerts: "{alerts, plural, one {# įspėjimas!} other {# įspėjimai!}}"
+    deleteTrip: Ištrinti kelionę
+    planNewTrip: Planuoti naują kelionę
+  TripStatusRenderers:
+    active:
+      delayedHeading: Kelionė vyksta ir vėluoja {formattedDuration}!
+      description: Kelionė turėtų atvykti į paskirties vietą {arrivalTime, time, short}.
+      earlyHeading: >-
+        Kelionė vyksta ir atvyksta {formattedDuration} anksčiau nei numatyta!
+      noDataHeading: Kelionė vyksta (realaus laiko atnaujinimų nėra).
+      onTimeHeading: Kelionė vyksta ir yra maždaug laiku.
+    base:
+      lastCheckedDefaultText: Paskutinio patikrinimo laikas nežinomas
+      lastCheckedText: "Paskutinį kartą patikrinta: prieš {formattedDuration}"
+      togglePause: Pristabdyti
+      tripIsNotSnoozed: Nutildyti likusiam paros laikui
+      tripIsSnoozed: Atjungti signalą
+      unknownState: Nežinoma kelionės būsena
+      untogglePause: Atnaujinti
+    inactive:
+      description: Atnaujinkite, kad gautumėte pranešimus.
+      heading: Pranešimai pristabdyti.
+    nextTripNotPossible:
+      description: >
+        Po kelių nesėkmingų bandymų rasti jūsų maršrutą, stebėjimas šiai dienai
+        nutildytas, nes vienas ar daugiau maršruto pakeitimų galėjo įvykti.
+        Norėdami atnaujinti kelionės stebėjimą, spustelėkite „Atjungti signalą".
+        Jei stebėjimas vis tiek nepasiekiamas, spustelėkite „Planuoti naują kelionę",
+        kad išsaugotumėte naujausią stebimą maršrutą.
+      heading: Nepavyksta stebėti kelionės
+    noLongerPossible:
+      description: >
+        Kelionių planuoklis negalėjo rasti jūsų kelionės jokią pasirinktą savaitės
+        dieną. Bandykite iš naujo suplanuoti maršrutą, kad rastumėte alternatyvų kelią.
+      heading: Kelionė nebegalima
+    notCalculated:
+      awaiting: Laukiama skaičiavimo...
+      description: Palaukite, kol kelionė bus apskaičiuota.
+      heading: Kelionė dar neapskaičiuota
+    past:
+      description: Tai vienkartinė kelionė, kuri įvyko praeityje.
+      heading: Kelionė yra praeityje
+    snoozed:
+      description: >-
+        Pranešimai apie šią kelionę automatiškai prasidės kitą pasirinktą prieinamą
+        dieną. Atjunkite signalą, kad šiandien gautumėte pranešimus.
+      heading: Pranešimai šiandienai nutildyti.
+    upcoming:
+      nextTripBegins: >-
+        Kita kelionė prasideda {tripDatetime, date, ::eeeee yyyyMMdd}
+        {tripDatetime, time, short}.
+      tripBegins: >-
+        Kelionė turėtų prasidėti {tripStart, time, short}. (Realaus laiko stebėjimas
+        prasidės {monitoringStart, time, short}.)
+      tripStartIsDelayed: Kelionės pradžios laikas vėluoja {duration}!
+      tripStartIsEarly: Kelionės pradžia vyksta {duration} anksčiau nei numatyta!
+      tripStartsSoonNoUpdates: Kelionė netrukus prasidės (realaus laiko atnaujinimų nėra).
+      tripStartsSoonOnTime: Kelionė netrukus prasidės ir yra maždaug laiku.
+  TripSummary:
+    arriveAt: "Atvykimas "
+    leaveAt: "Išvykimas "
+  TripSummaryPane:
+    happensOnDays: "Vyksta dienomis: {days}"
+    monitoredTripDays: Kelionės stebimos dienos
+    notifications: "{leadTimeInMinutes} min. prieš numatytą išvykimą"
+    notificationsPaused: Pranešimai pristabdyti.
+    notificationsSnoozed: Pranešimai šiandienai nutildyti.
+    timeAndDuration: Kelionės laikas ir trukmė
+  TripTools:
+    copyLink: Kopijuoti nuorodą
+    header: Kelionės įrankiai
+    linkCopied: Nukopijuota
+    reportEmailSubject: Pranešimas apie problemą su OpenTripPlanner
+    reportEmailTemplate: >
+      *** INSTRUKCIJOS VARTOTOJUI ***
+
+      Ši funkcija leidžia el. paštu siųsti pranešimą svetainės administratoriams
+      peržiūrai.
+
+      Užpildykite toliau pateiktus klausimus ir išsiųskite naudodami savo įprastą
+      el. pašto programą.
+
+
+      *** PRAŠOME UŽPILDYTI ***
+
+
+      Aptikta problema:
+
+
+      Kelionės tipas, kurį norėjote atlikti (pvz., pėsčiomis + viešuoju transportu,
+      dviračiu + viešuoju transportu, automobiliu + viešuoju transportu):
+
+
+      *** TECHNINĖS DETALĖS ***
+    reportIssue: Pranešti apie problemą
+  TripViewer:
+    accessible: Prieinamas
+    bicyclesAllowed: Leidžiama
+    endOfTrip: Kelionė baigiasi čia
+    header: Kelionių peržiūra
+    listOfRouteStops: Stotelių sąrašas šiame maršrute
+    routeHeader: "Maršrutas: <strong>{routeShortName}</strong> {routeLongName}"
+    startOfTrip: Kelionė prasideda čia
+    tripDescription: Lipkite {boardAtStop} ir išlipkite {disembarkAtStop}
+    viewStop: Peržiūrėti
+  UserAccountScreen:
+    confirmDelete: >-
+      Ar tikrai norite ištrinti savo vartotojo paskyrą? Kai tai padarysite,
+      jos nebebus galima atkurti.
+    errorUpdatingProfile: Klaida atnaujinant profilį.
+    fieldUpdated: Šis nustatymas buvo atnaujintas.
+    fields:
+      add-companion-form: Kelionės draugai
+      storeTripHistory: Saugoti kelionių istoriją
+  UserSettings:
+    confirmDeletion: >-
+      Turite išsaugotų paieškų ir (arba) vietų. Išjungus naujausių vietų/paieškų
+      saugojimą, šie elementai bus pašalinti. Tęsti?
+    favoriteStops: Mėgstamiausios stotelės
+    myPreferences: Mano nuostatos
+    mySavedPlaces: Mano išsaugotos vietos (<manageLink>valdyti</manageLink>)
+    noFavoriteStops: Nėra mėgstamiausių stotelių
+    recentPlaces: Neseniai lankytos vietos
+    recentSearchSummary: "{mode} nuo {from} iki {to}"
+    recentSearches: Nesenios paieškos
+    rememberSearches: Prisiminti nesenias paieškas/vietas?
+    stopId: "Stotelės ID: {stopId}"
+    storageDisclaimer: >
+      Visos jūsų pasirinktos išsaugoti nuostatos, vietos ar nustatymai bus saugomi
+      jūsų naršyklės vietinėje atmintyje. Tretiosios šalys neturės prieigos prie
+      jūsų namų, darbo ar kitų vietų informacijos. Bet kuriuo metu galite pasirinkti
+      išjungti nesenių vietų/paieškų įsiminimą ir išvalyti išsaugotas namų/darbo
+      vietas bei mėgstamiausias stotelės.
+  VerifyEmailPane:
+    emailIsVerified: Mano el. paštas patvirtintas!
+    instructions1: >
+      Patikrinkite savo el. pašto dėžutę ir sekite nuorodą žinutėje, kad
+      patvirtintumėte el. pašto adresą prieš baigdami paskyros sąranką.
+    instructions2: Kai patvirtinsite, spustelėkite mygtuką žemiau, kad tęstumėte.
+    instructions3: >-
+      Galite planuoti keliones ir bet kada grįžti į šį puslapį, kad tęstumėte
+      paskyros sąranką.
+    resendVerification: Siųsti patvirtinimo el. laišką iš naujo
+  ViewSwitcher:
+    nearby: Netoliese
+    switcher: Perjungiklis
+  WelcomeScreen:
+    prompt: Kur norite keliauti?
+config:
+  accessModes:
+    car_hail: Taksi
+  flex:
+    both: Daugiau informacijos maršruto apačioje
+    call-ahead: Skambinkite iš anksto
+    continuous-dropoff: Susisiekite su vežėju dėl stotelės
+    flex-service: Lankstus maršrutas
+    flex-service-colon: "Lankstus maršrutas:"
+util:
+  state:
+    errorPlanningTrip: Planuojant kelionę įvyko klaida.
+    networkUnavailable: "{network} tinklas šiuo metu nepasiekiamas."
+    noTripFound: Kelionė nerasta.
+    noTripFoundForMode: Nerasta kelionė naudojant {modes}.
+    noTripFoundReason: >-
+      Gali būti, kad nėra viešojo transporto paslaugų nurodytu laiku ar per
+      nurodytą maksimalų atstumą, arba jūsų išvykimo ar paskirties vieta gali
+      būti sunkiai pasiekiama.
+    noTripFoundWithReason: "{noTripFound} {reason}"
+otpUi:
+  AccessLegBody:
+    LegDiagramPreview:
+      elevationChart: Aukščio diagrama
+      noElevationData: Aukščio duomenų nėra.
+      toggleElevationChart: Rodyti/slėpti aukščio diagramą
+    RentedVehicleSubheader:
+      pickupRental: Paimkite {company} {vehicleType} {vehicleName}
+      resumeRentalRide: Tęsti nuomą
+      vehicleType:
+        bike: dviratį
+        bikeshare: bendrą dviratį
+        car: automobilį
+        escooter: elektrinį paspirtuką
+        vehicle: transporto priemonę
+      walkVehicle: Veskite transporto priemonę per {place}
+    TncLeg:
+      bookRide: Rezervuoti važiavimą
+      bookRideLater: Palaukite iki {timeMillis, time, short} ir rezervuokite
+      estimatedCost: "Numatoma kaina: {minFare} - {maxFare}"
+      estimatedTravelTime: "Numatomas kelionės laikas: {duration} (neatsižvelgta į eismą)"
+      waitForPickup: "Laukite{minutes, plural, =0 {} other { # min.}} {company} paėmimo"
+    mapillaryTooltip: Rodyti gatvės vaizdą šioje vietoje
+    step:
+      circleClockwise: Eikite ratu pagal laikrodžio rodyklę
+      circleCounterClockwise: Eikite ratu prieš laikrodžio rodyklę
+      continue: Tęskite
+      enterStation: Įeikite į stotį
+      exitStation: Išeikite iš stoties
+      hardLeft: Smarkiai į kairę
+      hardRight: Smarkiai į dešinę
+      left: Kairėn
+      right: Dešinėn
+      slightlyLeft: Šiek tiek į kairę
+      slightlyRight: Šiek tiek į dešinę
+      uTurnLeft: Apsisukite kairėn
+      uTurnRight: Apsisukite dešinėn
+    stepDepart: Eikite {heading} kryptimi {street} gatve
+    stepElevator: Naudokite liftą iki {street}
+    stepFollowSigns: Sekite rodykles į {street}
+    stepGeneric: "{step} {street} gatve"
+    stepHeading:
+      east: rytų
+      north: šiaurės
+      northeast: šiaurės rytų
+      northwest: šiaurės vakarų
+      south: pietų
+      southeast: pietų rytų
+      southwest: pietų vakarų
+      west: vakarų
+    stepStation: "{step} prie {street}"
+    summary: "{mode} iki {place}"
+    summaryAndDistance: "{mode} {distance} iki {place}"
+    summaryMode:
+      bike: Dviratis
+      bikeshare: Dviračių nuoma
+      carDrive: Vairuoti
+      carHail: Važiuoti
+      escooter: Važiuoti
+      walk: Pėsčiomis
+    transfer: "Persėdimas{duration, select, undefined {} other {, laukite {duration}}}"
+    unnamedPath: Bevardis takas
+    unnamedRoad: Bevardė gatvė
+    vehicleTitle: "{company} {vehicleType}"
+    vehicleType:
+      bike: Dviratis
+      bikeshare: Bendras dviratis
+      car: Automobilis
+      escooter: Elektrinis paspirtukas
+      vehicle: Transporto priemonė
+  buildingBlocks:
+    alert:
+      expand: Išplėsti
+  DateTimeSelector:
+    arrive: Atvykti iki
+    date: Data
+    dateTimeSelector: Datos/laiko parinkiklis
+    depart: Išvykti
+    now: Išvykti dabar
+    time: Laikas
+  EndpointsOverlay:
+    clearLocation: Pašalinti kaip {locationType} vietą
+    coordinates: "{lat, number, ::.00000}, {lon, number, ::.00000}"
+    forgetHome: Pamiršti namus
+    forgetWork: Pamiršti darbą
+    saveAsHome: Išsaugoti kaip namus
+    saveAsWork: Išsaugoti kaip darbą
+    swapLocation: Pakeisti į {locationType} vietą
+    viewNearby: Peržiūrėti netoliese
+  FromToLocationPicker:
+    from: Iš čia
+    planATrip: "Planuoti kelionę:"
+    to: Čia
+  ItineraryBody:
+    common:
+      durationShort: >-
+        {approximatePrefix, select, true {Apie } other {}}{hours, plural, =0 {}
+        other {# val. }}{minutes} min.
+    flexAdvanceNotice: " bent {leadDays, plural, one {# dieną} other {# dienas}} iš anksto"
+    flexBookingUrl: <link>rezervuokite kelionę internetu</link>
+    flexCallAhead: paskambinkite iš anksto
+    flexCallNumber: paskambinkite {phoneNumber}
+    flexPickupMessage: "Norint važiuoti šiuo maršrutu, reikia {action}{advanceNotice}."
+    stayOnBoard: Likite transporto priemonėje prie {place}
+    travelBy: Keliauti {mode}
+    travelByMode:
+      bike: dviračiu
+      car: automobiliu
+      escooter: elektriniu paspirtuku
+      walk: pėsčiomis
+    tripAccessibility:
+      inaccessible: neprieinamas
+      itineraryAccessibility: "Šios kelionės prieinamumas vežimėliams: "
+      legAccessibility: "Šios kelionės atkarpos prieinamumas vežimėliams: "
+      likelyAccessible: tikriausiai prieinamas
+      unclear: nežinoma
+    viewOnMap: Rodyti žemėlapyje
+  LocationField:
+    beginTypingPrompt: Pradėkite rašyti, kad ieškotumėte vietų
+    clearLocation: Išvalyti vietą
+    currentLocationUnavailable: Dabartinė vieta nepasiekiama
+    fetchingLocation: Nustatoma vieta…
+    fetchingSuggestions: Ieškoma pasiūlymų…
+    geocoderUnreachable: Nepavyksta gauti pasiūlymų
+    homeLocation: Namai
+    howToAccessResults: >-
+      Norėdami naršyti rezultatų sąrašą, naudokite žemyn rodyklę.
+      Norėdami pasirinkti rezultatą, paspauskite Enter.
+    myPlaces: Mano vietos
+    nearby: Netoliese esančios stotelės
+    noResults: Rezultatų nerasta
+    other: Kita
+    otherCount: "{count, plural, =1 {# kitas taškas} other {# kiti taškai}} domesni"
+    parenthesisFormat: "{main} ({detail})"
+    recentlySearched: Neseniai ieškota
+    resultsFound: '{results} rasta pagal „{input}".'
+    stationCount: "{count, plural, =1 {# stotis} other {# stotys}}"
+    stations: Stotys
+    stopCount: "{count, plural, =1 {# stotelė} other {# stotelės}}"
+    stops: Stotelės
+    suggestedLocations: Siūlomos vietos
+    suggestedLocationsLong: Perjungti siūlomų vietų sąrašo rodymą
+    useCurrentLocation: Naudoti dabartinę vietą
+    workLocation: Darbas
+  mapControls:
+    CooperativeGesturesHandler:
+      MacHelpText: Naudokite ⌘ + slinkimą norėdami keisti žemėlapio mastelį
+      MobileHelpText: Naudokite du pirštus žemėlapiui judinti
+      WindowsHelpText: Naudokite Ctrl + slinkimą norėdami keisti žemėlapio mastelį
+    GeolocateControl:
+      FindMyLocation: Rasti mano vietą
+      LocationNotAvailable: Vieta nepasiekiama
+    NavigationControl:
+      ResetBearing: Atkurti kryptį į šiaurę
+      ZoomIn: Priartinti
+      ZoomOut: Atitolinti
+    ScaleControl:
+      Feet: ft
+      Kilometers: km
+      Meters: m
+      Miles: my
+      NauticalMiles: jm
+  MapPopup:
+    availableBikes: "Laisvų dviračių: {value}"
+    availableDocks: "Laisvų dokinimo vietų: {value}"
+    floatingBike: "Laisvas dviratis: {name}"
+    floatingCar: "Automobilis: {name}"
+    floatingEScooter: "Elektrinis paspirtukas: {name}"
+    popupTitle: "{stationNetwork, select, false {{name}} other {{stationNetwork} {name}}}"
+    stopId: >-
+      {feedName, select, undefined {Stotelės ID: {stopId}} other {Stotelės ID:
+      {feedName} {stopId}}}
+    stopViewer: Stotelių peržiūra
+  ModeSelector:
+    labels:
+      bicycle: Dviratis
+      car: Vairuoti
+      rent: Nuoma
+      subsettingsCollapsed: " (Papildomos nuostatos sutrauktos)"
+      subsettingsExpanded: " (Papildomos nuostatos išplėstos)"
+      transit: Viešasis transportas
+      walk: Pėsčiomis
+    settings:
+      bikeTolerance-label: Tolerancija dviračiui
+      bikeTolerance-labelHigh: Daugiau važiavimo dviračiu
+      bikeTolerance-labelLow: Mažiau važiavimo dviračiu
+      bus-label: Autobusas
+      carTolerance-label: Tolerancija automobiliui
+      carTolerance-labelHigh: Daugiau važiavimo automobiliu
+      carTolerance-labelLow: Mažiau važiavimo automobiliu
+      ferry-label: Keltas
+      rail-label: Traukinys
+      subway-label: Metro
+      tram-label: Tramvajus
+      walkReluctance-label: Vengti ėjimo
+      walkTolerance-label: Tolerancija ėjimui
+      walkTolerance-labelHigh: Daugiau ėjimo
+      walkTolerance-labelLow: Mažiau ėjimo
+      wheelchair-label: Prieinamas maršrutas
+  PrintableItinerary:
+    TncLeg:
+      estimatedTravelTime: >-
+        Numatomas kelionės laikas: <strong>{duration}</strong> (neatsižvelgta į eismą)
+      estimatedWaitTime: "Numatomas laukimo laikas: <strong>{duration}</strong>"
+      header: <strong>Važiuokite su {company}</strong> iki <strong>{place}</strong>
+    TransitLeg:
+      alight: >-
+        Išlipkite prie <strong>{place}</strong>{stopCodePart}
+        <strong>{time, time, short}</strong>
+      board: >-
+        Lipkite <strong>{place}</strong>{stopCodePart}
+        <strong>{time, time, short}</strong>
+      continuesAs: Tęsiasi kaip {routeDescription}
+    depart: <strong>Išvykite</strong> iš <strong>{place}</strong>
+  SettingsSelectorPanel:
+    bikeOnly: Tik dviratis
+    escooterOnly: Tik elektrinis paspirtukas
+    takeTransit: Viešuoju transportu
+    travelPreferences: Kelionės nuostatos
+    use: Naudoti
+    useCompanies: Naudoti kompanijas
+    walkOnly: Tik pėsčiomis
+  TransitLegBody:
+    AlertsBody:
+      alertLinkText: Peržiūrėkite įspėjimą {agency} svetainėje
+      effectiveDate: Galioja nuo {dateTime, date, long}
+      effectiveTimeAndDate: "Galioja nuo {dateTime, time, short}, {day}"
+      linkOpensNewWindow: (Atidaroma naujame lange)
+      noAgencyAlertLinkText: Peržiūrėkite įspėjimą vežėjo svetainėje
+      today: Šiandien
+      tomorrow: Rytoj
+      yesterday: Vakar
+    agencyExternalLink: "{agencyName} (Išorinė nuoroda)"
+    alertsHeader: "{alertCount, plural, =1 {# įspėjimas} other {# įspėjimai}}"
+    arriveAt: Atvykti į {place}
+    disembarkAt: Išlipti prie {legDestination}
+    expandDetails: (Išplėsti detales)
+    fare: "Bilieto kaina: {fare}"
+    fromLocation: iš {location}
+    legDetails: Atkarpos detalės
+    operatedBy: Paslaugą teikia {agencyLink}
+    ride: Važiuoti
+    rideDurationAndStops: "Važiuoti {duration}{numStops, plural, =1 {} other { / # stotelės}}"
+    routeDescription: "{routeName} <toPrefix>iki</toPrefix> {headsign}"
+    stopId: Stotelės ID {stopId}
+    stopIdBasic: ID {stopId}
+    stopViewer: Stotelių peržiūra
+    tripViewer: Kelionių peržiūra
+    typicalWait: "Įprastas laukimas: {waitTime}"
+    zoomToLeg: Priartinti atkarpos vaizdą žemėlapyje
+  TransitVehicleOverlay:
+    defaultTooltip: "{route}: prieš {duration}"
+    durationWithSeconds: >-
+      {hours, plural, =0 {} other {# val. }}{minutes, plural, =0 {{seconds,
+      plural, =0 {# min.} other {}}} other {# min.}}{seconds, plural, =0 {}
+      other { # sek.}}
+    routeTitle: "{type} {name}"
+    transitLine: Linija
+  TripDetails:
+    co2: "CO₂ emisija: <strong>{co2}</strong>"
+    co2description: >-
+      CO₂ intensyvumas apskaičiuojamas dauginant kiekvienos kelionės atkarpos
+      atstumą iš kiekvieno būdo CO₂ intensyvumo. Kiekvieno būdo CO₂ intensyvumas
+      paimtas iš <link>šios skaičiuoklės</link>.
+    departure: >-
+      Išvykti <strong>{departureDate, date, long}</strong>
+      <strong>{departureDate, time, short}</strong>
+    fareCategory: Bilieto kategorija
+    hideDetail: Slėpti detales
+    legMissingFareInfo: Bilieto informacijos apie šią atkarą nėra
+    minutesActive: >-
+      Aktyvus laikas: <strong>{approximatePrefix, select, true {~} other
+      {}}{minutes, plural, one {# minutė} other {# minutės}}</strong>
+    missingFareTotal: Bendra bilieto kaina nepasiekiama
+    showDetail: Rodyti detales
+    timeActiveDescription: >
+      Šios kelionės metu praleisite <strong>{walkMinutes, plural, one {#
+      minutę} other {# minučių}}</strong> eidami ir <strong>{bikeMinutes,
+      plural, one {# minutę} other {# minučių}}</strong> važiuodami dviračiu.
+    title: Kelionės detalės
+    tncFare: "{companies} kaina: <strong>{minTNCFare} - {maxTNCFare}</strong>"
+    total: Iš viso
+    transferDiscountExplanation: Taikoma persėdimo nuolaida {transferAmount}
+    transitFare: Transporto bilieto kaina
+    transitFareEntry: "{name}: <strong>{value}</strong>"
+    transitFareTable: Šios kelionės transporto tarifai
+    tripIncludesFlex: Šioje kelionėje yra lankstūs maršrutai. {extraMessage}
+  TripOptions:
+    openApp: Atidaryti programėlę
+    transitOnly: Tik viešuoju transportu
+  queryParameters:
+    bikeSpeed: Dviračio greitis
+    distanceInMiles: |
+      {centimiles, select,
+        10 {1/10 mylios}
+        25 {1/4 mylios}
+        50 {1/2 mylios}
+        75 {3/4 mylios}
+        other {{miles, number, :: unit/mile unit-width-full-name}}
+      }
+    maxBikeDistance: Maksimalus dviračio atstumas
+    maxBikeTime: Maksimalus dviračio laikas
+    maxEScooterDistance: Maksimalus paspirtuko atstumas
+    maxWalkDistance: Maksimalus ėjimo atstumas
+    maxWalkTime: Maksimalus ėjimo laikas
+    optimizeBikeFlat: Lygus maršrutas
+    optimizeBikeFriendly: Dviračiams tinkamas maršrutas
+    optimizeBikeSpeed: Greitis
+    optimizeFor: Optimizuoti pagal
+    speedInMilesPerHour: "{mph} MPH"
+    walkReluctance: Vengimas ėjimo
+    walkReluctanceHigh: Daugiau viešojo transporto
+    walkReluctanceLow: Daugiau ėjimo
+    walkSpeed: Ėjimo greitis
+    watts: Paspirtuko galia
+    watts125kidsHoverboard: Vaikų hoverboard (10 km/h)
+    watts1500powerfulEscooter: Galingas paspirtukas (39 km/h)
+    watts250entryLevelEscooter: Pradinio lygio paspirtukas (18 km/h)
+    watts500robustEscooter: Tvirtas paspirtukas (29 km/h)
+    wheelchair: Teikti pirmenybę prieinamiems maršrutams

@@ -97,7 +97,7 @@ type Props = {
 
 const getNearbyItem = (place: any, feeds?: any[]) => {
   const placeForFromTo = { ...place }
-  if (place.__typename === 'Stop' && feeds) {
+  if (place.__typename === 'Stop' && Array.isArray(feeds)) {
     const feedId = place.gtfsId.split(':')[0]
     const feed = feeds.find((f) => f.feedId === feedId)
     const feedName = feed?.publisher?.name

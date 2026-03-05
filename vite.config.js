@@ -131,7 +131,8 @@ export default defineConfig({
     react()
   ],
   server: {
-    port: 9966,
+    host: '0.0.0.0',
+    port: 4000,
     strictPort: true
   }
 })
