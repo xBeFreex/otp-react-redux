@@ -79,13 +79,7 @@ modes:
       label: Keltas
 
 itinerary:
-  validModeCombinations: [
-    ['WALK'],
-    ['WALK', 'TRANSIT'],
-    ['WALK', 'TRANSIT', 'PERSONAL'],
-    ['WALK', 'TRANSIT', 'SHARED'],
-    ['WALK', 'SHARED'],
-  ]
+  validModeCombinations: [['WALK'], ['WALK', 'TRANSIT'], ['WALK', 'TRANSIT', 'PERSONAL'], ['WALK', 'TRANSIT', 'SHARED'], ['WALK', 'SHARED']]
   showRouteFares: false
   showPlanFirstLastButtons: false
   showApproximatePrefixAccessLegs: false
