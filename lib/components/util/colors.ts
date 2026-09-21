@@ -33,20 +33,30 @@ const GREY_ON_WHITE = grey[700]
  */
 const BLUE_ON_WHITE = blue[800]
 
+const CLOSED_OR_CANCELED_RED = red[700]
+
 const DARK_TEXT_GREY = '#333333'
 
 const DEFAULT_ROUTE_COLOR = grey[800]
 
 const ELEVATION_BLUE = blue[400]
 
+const SUCCESS_COLOR_VARIABLES = {
+  info: blue[50],
+  success: '#DCF0E0',
+  warning: '#fcf8e3'
+}
+
 export {
   grey,
   red,
   blue,
+  CLOSED_OR_CANCELED_RED,
   DARK_TEXT_GREY,
   DEFAULT_ROUTE_COLOR,
   ELEVATION_BLUE,
   RED_ON_WHITE,
   GREY_ON_WHITE,
-  BLUE_ON_WHITE
+  BLUE_ON_WHITE,
+  SUCCESS_COLOR_VARIABLES
 }

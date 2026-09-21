@@ -141,6 +141,7 @@ export type PersistenceConfig = (
 /** Popup target settings */
 export interface PopupTargetConfig {
   appendLocale?: boolean
+  appendParams?: boolean
   modal?: boolean
   url?: string
 }
@@ -255,6 +256,7 @@ export interface MapConfig {
 /** Settings for reporting issues */
 export interface ReportIssueConfig {
   mailto: string
+  subject?: string
 }
 
 export interface ItineraryCostConfig {
@@ -271,6 +273,7 @@ export type ItinerarySortOption =
   | 'COST'
   | 'DEPARTURETIME'
   | 'FARE'
+  | 'EMISSIONS'
 
 export interface ItineraryCostWeights {
   driveReluctance: number
@@ -296,6 +299,7 @@ export interface ItineraryConfig {
   hideSkeletons?: boolean
   mergeItineraries?: boolean
   mutedErrors?: string[]
+  omitCanceledTrips?: boolean
   onlyShowCountdownForRealtime?: boolean
   previewOverlay?: boolean
   renderRouteNamesInBlocks?: boolean
@@ -339,6 +343,7 @@ export interface TransitModeConfig {
 
 export interface ModesConfig {
   accessModes: TransitModeConfig[]
+  allowFlexWithoutTransit?: boolean
   initialState?: {
     enabledModeButtons?: string[]
     modeSettingValues?: ModeSettingValues
@@ -355,7 +360,7 @@ export interface ModeColorConfig {
 }
 
 export interface TransitOperatorConfig extends TransitOperator {
-  colorMode?: 'gtfs' | 'gtfs-softened' | 'disabled'
+  colorMode?: 'gtfs' | 'disabled'
   modeColors?: Record<string, ModeColorConfig>
   routeIcons?: boolean
 }
@@ -400,6 +405,14 @@ export interface StopScheduleViewerConfig {
 export interface DateTimeConfig {
   dateFormat: string
   timeFormat: string
+}
+
+export type ExtraView = {
+  content: JSX.Element
+  icon?: JSX.Element
+  name: string
+  path: string
+  showInHeaderBar?: boolean
 }
 
 /** The main application configuration object */

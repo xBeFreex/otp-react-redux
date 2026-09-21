@@ -18,6 +18,13 @@ translateExternalLinks: false
 map:
   initLat: 54.6872
   initLon: 25.2797
+  # autoFlyOnTripFormUpdate: false
+  # navigationControlPosition: "bottom-right"
+
+  # Enable the following option to show the endpoints popup even with persistence disabled
+  # forceDisplayEndpointsPopup: false
+  # Show "view stop" button in stop popup. Set to true by default
+  showViewStopInPopup: true
   baseLayers:
     - name: Gatvės
       url: //basemaps.cartocdn.com/gl/positron-gl-style/style.json
@@ -39,6 +46,10 @@ geocoder:
   geocoderResultsOrder: ['STATIONS', 'STOPS', 'OTHER']
 
 modes:
+  # allowFlexWithoutTransit: true # True by default
+  ### Optional number of itineraries to return by default - Defaults to 3.
+  # numItineraries: 3
+  # Definition for the mode buttons to display in trip form
   modeButtons:
     - iconName: bus
       key: transit
@@ -81,8 +92,13 @@ itinerary:
   showAlertEffectiveDateTimeText: true
   showAllWalkLegs: false
   strictItineraryFiltering: false
+  # Whether to render route names and colors in the blocks inside
+  # the batch ui rows
   renderRouteNamesInBlocks: true
   fillModeIcons: true
+  # Whether to omit trips that involve a transit leg that has been canceled via realtime update
+  omitCanceledTrips: true
+  # Allow user to collapse alerts in itinerary body
   allowUserAlertCollapsing: true
   defaultFareType: { mediumId: null, riderCategoryId: null }
   showHeaderText: false
@@ -108,3 +124,271 @@ language:
 
 localization:
   defaultLocale: lt
+
+# The transitOperators key is a list of transit operators that can be used to
+# order transit agencies when sorting by route. Also, this can optionally
+# provide operator logos that appear in the the route viewer and itineraries).
+# Note: these logos will override the values found in
+# agency.txt#agency_branding_url.
+#
+# When sorting routes, otp-react-redux uses otp-ui's route-comparator which uses
+# multiple criteria to sort routes. (See https://git.io/Jk2Ia). The routes are
+# first sorted according to a comparator value based off of the agency. After
+# sorting routes by the agency, additional sorting criteria is used for routes
+# that yield the same agency comparator value.
+#
+# If the transitOperators key is not defined, route sorting will fall back to
+# using the agency name. If the transitOperators key is defined, the order field
+# defined for each agency is used as a comparator value. Agencies are matched
+# according to both the feedId and agencyId. If no match is found or the order
+# field is not undefined, the associated routes will be placed after all other
+# agencies which did have a match with a defined order value.
+#
+# This works best with the IBI fork of OTP which returns the necessary
+# information in the route index API. Check the build logs of OTP to see what
+# feedIds and agencyIds were found as these IDs can sometimes be auto-generated.
+#
+# Shown below is an example transitOperators config setting for the Portland, OR
+# area which uses 2 GTFS files (from TriMet and C-TRAN).
+#
+# transitOperators:
+#   - feedId: TriMet
+#     agencyId: PSC
+#     logo: https://d2tyb7byn1fef9.cloudfront.net/psc.png
+#     order: 1
+#     colorMode: gtfs or disabled. see util/viewer.js for more details.
+#     # Mode color overrides. If a GTFS supplies weird colors for
+#     # a mode, they can be overridden here. This is treated as GTFS data.
+#     modeColors:
+#       BUS: # Any OTP mode
+#         color: 00FF00 # HEX color without the # (like GTFS)
+#         textColor: FFFFFF # HEX color without the # (like GTFS)
+#     routeIcons: false # If set to false, no mode icons in the route viewer
+#   - feedId: TriMet
+#     agencyId: TRIMET
+#     name: TriMet
+#     logo: http://news.trimet.org/wordpress/wp-content/uploads/2019/04/TriMet-logo-300x300.png
+#     order: 1
+#   - feedId: TriMet
+#     agencyId: TRAM
+#     logo: https://d2tyb7byn1fef9.cloudfront.net/tram.png
+#     order: 1
+#     # The C-TRAN GTFS feed does not come with feed_id or agency_id filled. The
+#     # value of '1' is a feed_id and agency_id that OTP auto-generated.
+#   - feedId: '1'
+#     agencyId: '1'
+#     name: C-TRAN
+#     logo: https://d2tyb7byn1fef9.cloudfront.net/ctran.png
+#     defaultRouteColor: ffffff
+#     defaultRouteTextColor: '000000'
+#     longNameSplitter: ' - '
+#     order: 2
+# Use this config to overwrite the accessibility score gradation
+# map that ships with otp-ui
+#accessibilityScore:
+#    gradationMap:
+#        0.0:
+#            color: "#ffb5b9"
+#            # The text can be overridden in the language section
+#            text: 'Not Accessible'
+#            icon: thumbs-down
+
+### Use this config for the standard mode selector
+# modeGroups:
+#   - name: Transit
+#     modes:
+#       - TRAM
+#       - BUS
+#   - name: Walk/Bike
+#     modes:
+#       - WALK
+#       - BICYCLE
+
+### Configure here the carbon output in grams per meter for each mode.
+### massUnits can be 'pound', 'kilogram', 'ounce', or 'gram'
+# co2:
+# . enabled: true
+#   carbonIntensity:
+#     walk: 0
+#     bicycle: 0
+#     car: 0.283
+#     tram: 0.041
+#     subway: 0.041
+#     rail: 0.041
+#     bus: 0.105
+#     ferry: 0.082
+#     cable_car: 0.021
+#     gondola: 0.021
+#     funicular: 0.041
+#     transit: 0.041
+#     leg_switch: 0
+#     airplane: 0.382
+#     micromobility: 0
+#   massUnit: "ounce"
+#   showIfHigher: false // show the relative CO₂ even if it's higher than driving
+#   cutoffPercentage: 33 // Only show the CO₂ comparison if the % difference from driving is at least this much
+
+### Popup config
+### OTP-RR supports a full-screen modal popup that can be launched from a set of
+### pre-set locations. Each button can be configured to open a different popup.
+### Popup "targets" define a URL that is opened. Their ID is used to give them names
+### via the language section below. For example, a target with the id "testTarget"
+### can be named with the i18n string "config.popups.testTarget" (see the language section below for an example)
+###
+### Each popup button location can have a target assigned to it
+# popups:
+#   targets:
+#     testTarget: # To set a name for this target, create the i18n string "config.popups.testTarget"
+#       url: http://example.com/ 
+#       modal: false # Setting this to false always launches the popup as a browser popup
+#     secondTarget: 
+#       url: http://test.com/
+#       appendLocale: false # Defaults to true, if set to false otp-rr will not append the current i18n language to the popup URL.
+#   launchers:
+#     toolbar: testTarget # This button is rendered in the top right of the toolbar (desktop view only!)
+#     itineraryFooter: testTarget # This button is rendered at the bottom of a selected itinerary
+#     optionFilter: secondTarget # This button is rendered to the left of the itinerary filter in the batch and metro UIs
+#     sidebarLink: testTarget # this button is rendered in the sidebar
+
+### Uncommenting the language section below will enable internationalization as a whole.
+### Defining a language here (a nested section whose name is an ISO language code corresponding to
+### a file in the i18n directory) will make that language available programmatically, and will also
+### cause it to be visible in the LocaleSelector component. Each language must have at least a
+### "name" property defined to be valid. Only this name property is needed for a language to function.
+### The LocaleSelector component, which provides a dropdown for the user to change their locale, will
+### only be rendered in the UI if more than one valid language is included in the language section.
+###
+### Language strings may also be optionally overridden here.
+### Strings can be set globally for all languages (e.g. for strings that are brands/nouns,
+### e.g. TriMet's "TransitTracker") or by language.
+### The nested structure should be the same as the language files under the i18n folder.
+### You can also customize OTP error messages for itinerary searches based on OTP HTTP codes.
+### A separate message can be set for each language or locale if necessary.
+### Languages defined may be region-specific (e.g. en-US) or language-specific (e.g. es, kr)
+
+# language:
+#   allLanguages
+#     common:
+#       accessModes:
+#         bikeshare: Relay Bike
+#   en-US:
+#     common:
+#       accessModes:
+#         bikeshare: Blue Bike
+#     config:
+#       flex:
+#         flex-service: Flex Service
+#         both: See bottom of itinerary for details.
+#         call-ahead: "Call to reserve: (555) 555-5555"
+#         continuous-dropoff: Communicate with operator about stop
+#       accessibilityScore:
+#         gradationMap:
+#           0.0: 'Not Accessible'
+#           0.9: 'Mostly Accessible'
+#       popups:
+#         testTarget: Test Target!
+#         # Optional string used for narrow UI elements such as link buttons under trip details.
+#         testTarget-narrow: Target!
+#       menuItems:
+#         demo-item: Demo Item
+#     errorMessages:
+#       404:
+#         msg: Sorry, we couldn't find any transit or rideshare/carshare options at the time and/or location you chose. Please try again later, or change the settings of your trip.
+#         # OTP modes in a string to be extracted (Format: [MODE1], [MODE2] (space included))
+#         modes: "CAR_HAIL, CAR_RENT"
+#       480:
+#         msg: No available transit routes or rideshare/carshare service at origin.
+#     name: English (US)
+#
+#   fr:
+#     config:
+#       # App (hamburger) menu items
+#       menuItems:
+#         car-pool: Covoiturage
+#         give-us-feedback: Donnez votre avis
+#         log-my-commute: Mes trajets verts
+#         traveler-tools: Outils du voyageur
+#     name: French
+
+#   ko:
+#     name: 한국인
+
+#   vi:
+#     name: Tiếng Việt
+
+#   # Chinese (Simplified) must be entered using 'zh-Hans',
+#   # or, if no other Chinese language is defined, using 'zh'.
+#   zh-Hans:
+#     name: 汉语
+
+#   # Chinese (Traditional) must be entered using 'zh-Hant'.
+#   # If Chinese (Simplified) is also used, it must be defined as 'zh-Hans'
+#   zh-Hant:
+#     name: 漢語
+
+#   es:
+#     name: Español
+
+### Localization section to provide language/locale settings
+#localization:
+#  defaultLocale: 'en-US'
+
+### If using OTP Middleware, you can define the optional phone number options below.
+# phoneFormatOptions:
+#  # ISO 2-letter country code for phone number formats (defaults to 'US')
+#  countryCode: US
+
+# set this value to change the absolute number of seconds of deviation from the
+# schedule for a transit stop time to be considered early, on-time or late. The
+# default is 60 seconds.
+# onTimeThresholdSeconds: 60
+
+# stopViewer:
+#   # Whether to display block IDs with each departure in the schedule mode.
+#   # (defaults to false if unspecified).
+#   showBlockIds: false
+# routeViewer:
+#   # Whether to render routes within flex zones of a route's patterns. If set to true,
+#   # routes will not be rendered within flex zones.
+#   hideRouteShapesWithinFlexZones: true
+#   # Setting to sort routes by the number of vehicles on each pattern
+#   sortRoutePatternsByVehicleCount: true
+#   # Disable vehicle highlight if necessary (e.g. custom or inverted icons)
+#   vehicleIconHighlight: true
+#   # Customize vehicle icon padding (the default iconPadding is 2px in otp-ui)
+#   vehicleIconPadding: 0
+#   # Remove vehicles from map that haven't sent an update in this number of seconds
+#   maxRealtimeVehicleAge: 60
+#   # Interval for refreshing vehicle positions
+#   vehiclePositionRefreshSeconds: 30 # defaults to 30 seconds.
+#   # Enable this to restrict listing to routes active within the last to next Sunday
+#   onlyShowCurrentServiceWeek: true
+
+# API key to make Mapillary API calls. These are used to show street imagery.
+# Mapillary calls these "Client Tokens". They can be created at https://www.mapillary.com/dashboard/developers
+# mapillary:
+#   key: <Mapillary Key>
+
+### Setting to enable touch-friendly behavior
+### e.g. on touch-screen kiosks that run a desktop OS.
+# isTouchScreenOnDesktop: true
+
+### Approximate duration in seconds after which, if there is no user activity, the UI is reset to an initial URL.
+### The value should be at least over a minute, so that users have enough time to extend their session if needed.
+### A warning is shown when a minute or a third of the session time remains, whichever is shorter.
+# sessionTimeoutSeconds: 180
+
+# nearbyView:
+### Setting to use arrival time instead of departure time in the nearby view.
+#   useArrivalTime: true
+### Setting to hide stops with no depatures in the nearby view.
+#   hideEmptyStops: true
+### What radius should the nearby query get results within? (in meters)
+#   radius: 600
+### Setting this to true will use the route viewer sort algorithm on routes
+#   useRouteViewSort: false
+### Setting this to false will hide the shadowey dot that appears when dragging the map
+#   showShadowDotOnMapDrag: false
+### In routes, this will always show the routeLongName before the headsign
+### !!! WARNING: in some feeds, this may show the long name twice. In some feeds, this may cause layout issues !!!
+#     alwaysShowLongName: false

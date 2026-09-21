@@ -68,6 +68,7 @@ actions:
       Prašome paprašyti naujo kodo ir bandyti dar kartą.
     tripDeleted: Jūsų kelionė buvo ištrinta.
 common:
+  closedStop: Uždaryta stotelė
   coordinates: "{lat}, {lon}"
   currentlySelected: " (Šiuo metu pasirinkta)"
   dateExpressions:
@@ -115,11 +116,13 @@ common:
     submitting: Pateikiama…
     "yes": "Taip"
   itineraryDescriptions:
+    containsCanceledTrip: Yra atšaukta kelionė
     fareUnknown: Bilieto informacijos nėra
     noDefaultFareTypeConfigured: Taikomi keli tarifai
     noItineraryToDisplay: Nėra maršruto rodyti.
     relativeCo2: |
       {co2} {isMore, select, true {daugiau} other {mažiau} } CO₂ nei vairuojant vienam
+    reservationRequired: Reikalinga rezervacija
     timeStartEnd: "{start} – {end}"
   linkOpensNewWindow: (Atidaroma naujame lange)
   modes:
@@ -381,6 +384,7 @@ components:
     selectCost: Kaina
     selectDepartureTime: Išvykimo laikas
     selectDuration: Trukmė
+    selectEmissions: CO₂ išmetimas
     selectFare: Bilieto kaina
     selectWalkTime: Ėjimo laikas
     sortResults: Rūšiuoti rezultatus
@@ -425,6 +429,11 @@ components:
         {inputFields} {inputFieldsCount, plural, =0 {} one {vieta yra} other
         {vietos yra}} netoli jokių gatvių.
       header: Vieta nepasiekiama
+    NO_DIRECT_MODE_CONNECTION:
+      body: >-
+        Išvykimo ir paskirties vietos gali būti per toli viena nuo kitos arba
+        tiesiogiai nesujungtos pasirinktu transporto būdu.
+      header: Tiesioginės kelionės nerasta.
     NO_STOPS_IN_RANGE:
       body: >-
         {inputFields} {inputFieldsCount, plural, =0 {} one {vieta yra} other
@@ -518,6 +527,7 @@ components:
   ResultsError:
     backToSearch: Grįžti į paiešką
   RouteDetails:
+    headsignFrom: "{headsign} (nuo {firstStop})"
     headsignTo: "{headsign} ({lastStop})"
     moreDetails: Daugiau detalių
     operatedBy: Valdo {agencyName}
@@ -642,6 +652,14 @@ components:
       Neprivaloma: sutinku, kad kelionių planuoklis saugotų mano istorines
       suplanuotas keliones, siekiant pagerinti viešojo transporto paslaugas mano
       vietovėje. <termsOfStorageLink>Daugiau informacijos...</termsOfStorageLink>
+  Timetable:
+    errorLoadingStopClosures: Klaida įkeliant uždarytas stoteles
+    errorLoadingTimetable: Klaida įkeliant tvarkaraštį
+    routeInformation: Maršruto informacija
+    showAllStops: Rodyti visas stoteles
+    showTimepointsOnly: Rodyti tik laiko taškus
+    switchDirection: Keisti kryptį
+    timetable: Tvarkaraštis
   TransitVehicleOverlay:
     in_transit_to: "Kita stotelė: {stop}"
     incoming_at: "Artėja prie: {stop}"
@@ -649,6 +667,7 @@ components:
     travelingAt: Judama {milesPerHour} greičiu
     vehicleName: Transporto priemonė {vehicleNumber}
   TripBasicsPane:
+    checkAgain: Tikrinti dar kartą
     checkingItineraryExistence: Tikrinama maršruto egzistavimas kiekvienai savaitės dienai...
     indicatesRequiredFields: Laukai pažymėti žvaigždute (*) yra privalomi.
     onlyOnDate: Tik {date, date, ::eeeee yyyyMMdd}
@@ -748,6 +767,7 @@ components:
     notificationsSnoozed: Pranešimai šiandienai nutildyti.
     timeAndDuration: Kelionės laikas ir trukmė
   TripTools:
+    copyItineraryText: Kopijuoti kelionės tekstą
     copyLink: Kopijuoti nuorodą
     header: Kelionės įrankiai
     linkCopied: Nukopijuota
