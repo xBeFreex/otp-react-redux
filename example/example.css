@@ -1,6 +1,25 @@
+:root {
+  /* Palette matched to visimarsrutai.lt/zemelapis */
+  --brand-primary: #6aa6c9;
+  --brand-primary-dark: #338bbe;
+  --brand-text: #444444;
+  --brand-danger: #c70000;
+  --brand-warning: #ffca28;
+  --brand-grey-light: #f8f8f8;
+  --brand-grey: #e2e2e2;
+  --brand-grey-dark: #666666;
+  --brand-radius: 14px;
+  --brand-font: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+
+body,
+.otp {
+  font-family: var(--brand-font);
+}
+
 .otp .navbar {
   border-radius: 0;
-  background-color: #444;
+  background-color: var(--brand-text);
   margin: 0px;
 }
 
@@ -27,7 +46,7 @@
   bottom: 0px;
   left: 0px;
   right: 0px;
-  padding: 0px 15px;
+  padding: 0px;
 }
 
 /* Necessary for defining the height in the main panel nested elements. */
@@ -35,15 +54,218 @@
   height: 100%;
 }
 
-.sidebar {
+/* --- Google Maps style layout: full-screen map, floating search card --- */
+
+/* Map takes the full width behind everything. */
+.main-row .map-container {
   height: 100%;
+  margin: 0;
   padding: 0;
-  box-shadow: 3px 0px 12px #00000052;
+  width: 100% !important;
+}
+
+/* Sidebar becomes a floating card on top of the map instead of a fixed column.
+   Height is fixed (not auto) because internal components (e.g. the advanced
+   settings panel transition) rely on their ancestor having a definite
+   height: 100% to size and animate correctly. */
+.main-row .sidebar {
+  background: #fff;
+  border-radius: var(--brand-radius);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+  height: calc(100% - 40px) !important;
+  left: 20px;
+  overflow-y: auto;
+  padding: 0;
+  position: absolute;
+  top: 20px;
+  width: 400px !important;
   z-index: 1000;
 }
 
-.map-container {
-  height: 100%;
-  margin: 0px;
-  padding: 0px;
+@media (max-width: 767px) {
+  .main-row .sidebar {
+    height: calc(100% - 20px) !important;
+    left: 10px;
+    right: 10px;
+    top: 10px;
+    width: auto !important;
+  }
+}
+
+/* Brand color accents matched to visimarsrutai.lt/zemelapis palette. */
+.otp .btn-primary {
+  background-color: var(--brand-primary);
+  border-color: var(--brand-primary-dark);
+}
+
+.otp .btn-primary:hover,
+.otp .btn-primary:active,
+.otp .btn-primary.active {
+  background-color: var(--brand-primary-dark);
+  border-color: var(--brand-primary-dark);
+}
+
+.otp a,
+.otp .btn-link {
+  color: var(--brand-primary-dark);
+}
+
+.otp a:hover {
+  color: var(--brand-text);
+}
+
+.otp .text-danger,
+.otp .has-error .help-block,
+.otp .alert-danger {
+  color: var(--brand-danger);
+}
+
+.otp .alert-warning {
+  background-color: var(--brand-warning);
+}
+
+/* --------------------------------------------------------------------
+   Full Bootstrap 3 "primary" color re-theme (replaces default #337ab7
+   used throughout list groups, panels, labels, pagination, nav-pills,
+   progress bars, form focus states and checkboxes/radios).
+-------------------------------------------------------------------- */
+
+.otp input[type='checkbox'],
+.otp input[type='radio'] {
+  accent-color: var(--brand-primary-dark);
+}
+
+.otp .form-control:focus {
+  border-color: var(--brand-primary-dark);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(106, 166, 201, 0.6);
+}
+
+.otp .text-primary,
+.otp a.text-primary:hover,
+.otp a.text-primary:focus {
+  color: var(--brand-primary-dark);
+}
+
+.otp .bg-primary {
+  background-color: var(--brand-primary);
+}
+
+.otp a.bg-primary:hover,
+.otp a.bg-primary:focus {
+  background-color: var(--brand-primary-dark);
+}
+
+.otp .list-group-item.active,
+.otp .list-group-item.active:hover,
+.otp .list-group-item.active:focus {
+  background-color: var(--brand-primary-dark);
+  border-color: var(--brand-primary-dark);
+}
+
+.otp .panel-primary > .panel-heading {
+  background-color: var(--brand-primary-dark);
+  border-color: var(--brand-primary-dark);
+}
+
+.otp .panel-primary {
+  border-color: var(--brand-primary-dark);
+}
+
+.otp .panel-primary > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: var(--brand-primary-dark);
+}
+
+.otp .label-primary {
+  background-color: var(--brand-primary-dark);
+}
+
+.otp .nav-pills > li.active > a,
+.otp .nav-pills > li.active > a:hover,
+.otp .nav-pills > li.active > a:focus {
+  background-color: var(--brand-primary-dark);
+}
+
+.otp .pagination > .active > a,
+.otp .pagination > .active > span,
+.otp .pagination > .active > a:hover,
+.otp .pagination > .active > span:hover,
+.otp .pagination > .active > a:focus,
+.otp .pagination > .active > span:focus {
+  background-color: var(--brand-primary-dark);
+  border-color: var(--brand-primary-dark);
+}
+
+.otp .progress-bar {
+  background-color: var(--brand-primary-dark);
+}
+
+.otp .dropdown-menu > .active > a,
+.otp .dropdown-menu > .active > a:hover,
+.otp .dropdown-menu > .active > a:focus {
+  background-color: var(--brand-primary-dark);
+}
+
+/* "Danger" role: form validation errors and alerts. */
+.otp .has-error .control-label,
+.otp .has-error .radio,
+.otp .has-error .checkbox,
+.otp .has-error .radio-inline,
+.otp .has-error .checkbox-inline,
+.otp .has-error.radio label,
+.otp .has-error.checkbox label,
+.otp .has-error.radio-inline label,
+.otp .has-error.checkbox-inline label {
+  color: var(--brand-danger);
+}
+
+.otp .has-error .form-control,
+.otp .has-error .form-control:focus {
+  border-color: var(--brand-danger);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.otp .has-error .input-group-addon {
+  border-color: var(--brand-danger);
+  color: var(--brand-danger);
+}
+
+.otp .label-danger {
+  background-color: var(--brand-danger);
+}
+
+.otp .btn-danger {
+  background-color: var(--brand-danger);
+  border-color: var(--brand-danger);
+}
+
+.otp .btn-danger:hover,
+.otp .btn-danger:active,
+.otp .btn-danger.active {
+  background-color: #a30000;
+  border-color: #a30000;
+}
+
+/* "Warning" role: brand yellow. */
+.otp .has-warning .control-label,
+.otp .text-warning {
+  color: #b38600;
+}
+
+.otp .label-warning {
+  background-color: var(--brand-warning);
+}
+
+.otp .btn-warning {
+  background-color: var(--brand-warning);
+  border-color: #e0b300;
+  color: var(--brand-text);
+}
+
+.otp .btn-warning:hover,
+.otp .btn-warning:active,
+.otp .btn-warning.active {
+  background-color: #e0b300;
+  border-color: #e0b300;
+  color: var(--brand-text);
 }

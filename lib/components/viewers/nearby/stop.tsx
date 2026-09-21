@@ -49,6 +49,7 @@ const ChildStopHeader = styled.div`
 `
 
 type Props = {
+  closed?: boolean
   fromToSlot: JSX.Element
   homeTimezone: string
   nearbyViewConfig?: NearbyViewConfig
@@ -136,6 +137,7 @@ const renderPatternRows = (
 }
 
 const Stop = ({
+  closed,
   fromToSlot,
   homeTimezone,
   nearbyViewConfig,
@@ -171,6 +173,7 @@ const Stop = ({
             <FormattedMessage id="components.StopViewer.viewSchedule" />
           ) : undefined
         }
+        closed={closed}
         fromToSlot={fromToSlot}
         stopData={stopData}
       />
@@ -241,7 +244,6 @@ const mapStateToProps = (state: AppReduxState) => {
   if (nearbyViewConfig?.useRouteViewSort) {
     routeSortComparator = (a: PatternStopTime, b: PatternStopTime) =>
       coreUtils.route.makeRouteComparator(transitOperators)(
-        // @ts-expect-error core-utils types are wrong!
         a.pattern.route,
         b.pattern.route
       )

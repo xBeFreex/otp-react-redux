@@ -8,13 +8,17 @@ import styled from 'styled-components'
 import * as uiActions from '../../actions/ui'
 import { AppReduxState } from '../../util/state-types'
 import { DEFAULT_ROUTE_COLOR } from '../util/colors'
-import { extractMainHeadsigns, PatternSummary } from '../../util/pattern-viewer'
+import {
+  extractMainHeadsigns,
+  HeadsignGenerator,
+  PatternSummary
+} from '../../util/pattern-viewer'
 import { getOperatorName } from '../../util/state'
-import { getPatternViewerColors } from '../../util/viewer'
 import { LinkOpensNewWindow } from '../util/externalLink'
 import {
   SetViewedRouteHandler,
   SetViewedStopHandler,
+  StopListEntry,
   ViewedRouteObject
 } from '../util/types'
 import { UnstyledButton } from '../util/unstyled-button'
@@ -25,11 +29,9 @@ import {
   HeadsignLabel,
   HeadsignSelectLabel,
   LogoLinkContainer,
-  PatternContainer,
-  StopContainer,
-  StopLink,
-  Stop as StyledStop
+  PatternContainer
 } from './styled'
+import StopList from './stop-list'
 
 const PatternSelectButton = styled(UnstyledButton)`
   span {
@@ -57,7 +59,7 @@ const PatternSelectDropdown = styled(Dropdown)`
 
 interface Props {
   intl: IntlShape
-  operator: TransitOperator
+  operator?: TransitOperator
   patternId: string
   route: ViewedRouteObject
   setHoveredStop: (id: string | null) => void
@@ -87,9 +89,22 @@ class RouteDetails extends Component<Props> {
     setViewedStop(stop)
   }
 
-  _editHeadsign = (pattern: PatternSummary) => {
-    pattern.headsign = this.props.intl.formatMessage(
-      { id: 'components.RouteDetails.headsignTo' },
+  _getHeadsignWithLastStop: HeadsignGenerator = (pattern) => {
+    return this.props.intl.formatMessage(
+      {
+        defaultMessage: '{headsign} ({lastStop})',
+        id: 'components.RouteDetails.headsignTo'
+      },
+      { ...pattern }
+    ) as string
+  }
+
+  _getHeadsignWithFirstStop: HeadsignGenerator = (pattern) => {
+    return this.props.intl.formatMessage(
+      {
+        defaultMessage: '{headsign} (from {firstStop})',
+        id: 'components.RouteDetails.headsignFrom'
+      },
       { ...pattern }
     ) as string
   }
@@ -101,24 +116,20 @@ class RouteDetails extends Component<Props> {
       patternId,
       route,
       setHoveredStop,
-      sortPatternsByVehicleCount,
-      useRouteColorAsBackground
+      sortPatternsByVehicleCount
     } = this.props
     const { agency, patterns = {}, shortName, url } = route
     const pattern = patterns[patternId]
 
     const moreDetailsURL = url || route?.agency?.url
 
-    const { backgroundColor, routeColor, textColor } = getPatternViewerColors(
-      useRouteColorAsBackground,
-      operator,
-      route
-    )
+    const routeColor = route.color ? `#${route.color}` : DEFAULT_ROUTE_COLOR
 
     const headsigns = extractMainHeadsigns(
       patterns,
       shortName,
-      this._editHeadsign
+      this._getHeadsignWithLastStop,
+      this._getHeadsignWithFirstStop
     ).sort((a, b) => {
       if (!sortPatternsByVehicleCount) return 0
       // sort by number of vehicles on that pattern
@@ -145,7 +156,7 @@ class RouteDetails extends Component<Props> {
       patternSelectLabel
 
     return (
-      <Container backgroundColor={backgroundColor} full={pattern != null}>
+      <Container full={pattern !== undefined}>
         {headsigns && headsigns.length > 0 && (
           <PatternContainer className="pattern-picker">
             {headsigns.length > 1 ? (
@@ -193,41 +204,19 @@ class RouteDetails extends Component<Props> {
             >
               <FormattedMessage id="components.RouteViewer.stopsInDirectionOfTravel" />
             </h2>
-            <StopContainer
-              backgroundColor={backgroundColor}
-              onMouseLeave={() => setHoveredStop(null)}
-              textColor={textColor}
-            >
-              {pattern?.stops?.map((stop, index) => (
-                <StyledStop
-                  // Use array index instead of stop id because a stop can be visited several times.
-                  key={index}
-                  onClick={() => this._stopLinkClicked(stop)}
-                  onMouseOver={() => setHoveredStop(stop.id)}
-                  routeColor={
-                    routeColor.includes('ffffff')
-                      ? DEFAULT_ROUTE_COLOR
-                      : routeColor
-                  }
-                  textColor={textColor}
-                  useRouteColorAsBg={useRouteColorAsBackground}
-                >
-                  <StopLink
-                    name={stop.name}
-                    onFocus={() => setHoveredStop(stop.id)}
-                    textColor={textColor}
-                  >
-                    {stop.name}
-                  </StopLink>
-                </StyledStop>
-              ))}
-            </StopContainer>
+
+            <StopList
+              intl={intl}
+              routeColor={routeColor}
+              setHoveredStop={setHoveredStop}
+              stopLinkClicked={this._stopLinkClicked}
+              stops={(pattern.stops ?? []).map(
+                (stop): StopListEntry => ({ name: stop.name, stopId: stop.id })
+              )}
+            />
           </>
         )}
-        <LogoLinkContainer
-          textColor={textColor}
-          useRouteBgColor={useRouteColorAsBackground}
-        >
+        <LogoLinkContainer>
           {operator && <OperatorLogo operator={operator} />}
           {moreDetailsURL && (
             <LinkOpensNewWindow

@@ -28,8 +28,10 @@ import {
   NearbyFilterKey,
   NearbyFilters
 } from '../../../util/state-types'
+import { flattenStopClosures } from '../../../util/itinerary'
 import { GeocoderConfig, NearbyFilterConfig } from '../../../util/config-types'
 import { getCurrentServiceWeek } from '../../../util/current-service-week'
+import { grey } from '../../util/colors'
 import { IconMessageContainer } from '../../narrative/metro/metro-error-renderer'
 import {
   PatternStopTime,
@@ -55,7 +57,7 @@ import Stop, { fullTimestamp, patternArrayforStops } from './stop'
 import Vehicle from './vehicle-rent'
 import VehicleParking from './vehicle-parking'
 
-const AUTO_REFRESH_INTERVAL = 15000000
+const AUTO_REFRESH_INTERVAL = 15000
 
 // TODO: use lonlat package
 type CurrentPosition = { coords?: { latitude: number; longitude: number } }
@@ -63,6 +65,7 @@ type ServiceWeek = { end: string; start: string }
 
 type Props = {
   activeNearbyFilters: NearbyFilters
+  closedStops?: Map<string, Set<string>>
   currentPosition?: CurrentPosition
   currentServiceWeek?: ServiceWeek
   defaultLatLon: LatLonObj | null
@@ -84,6 +87,8 @@ type Props = {
   nearbyFilters?: Array<NearbyFilterConfig>
   nearbyViewCoords?: LatLonObj
   nearbyViewError?: any
+  onLocationFieldBlur?: () => void
+  onLocationFieldFocus?: () => void
   radius?: number
   routeSortComparator: (a: PatternStopTime, b: PatternStopTime) => number
   sessionSearches: any
@@ -95,8 +100,13 @@ type Props = {
   zoomToPlace: ZoomToPlaceHandler
 }
 
-const getNearbyItem = (place: any, feeds?: any[]) => {
+const getNearbyItem = (
+  place: any,
+  closedStops?: Set<string>,
+  feeds?: any[]
+) => {
   const placeForFromTo = { ...place }
+  let closed = false
   if (place.__typename === 'Stop' && Array.isArray(feeds)) {
     const feedId = place.gtfsId.split(':')[0]
     const feed = feeds.find((f) => f.feedId === feedId)
@@ -105,6 +115,7 @@ const getNearbyItem = (place: any, feeds?: any[]) => {
       feedName && place.code
         ? `${place.name} (${feedName} ${place.code})`
         : place.name
+    closed = place.gtfsId && closedStops && closedStops.has(place.gtfsId)
   }
   const fromTo = (
     <FromToPicker
@@ -117,7 +128,7 @@ const getNearbyItem = (place: any, feeds?: any[]) => {
     case 'RentalVehicle':
       return <Vehicle fromToSlot={fromTo} vehicle={place} />
     case 'Stop':
-      return <Stop fromToSlot={fromTo} stopData={place} />
+      return <Stop closed={closed} fromToSlot={fromTo} stopData={place} />
     case 'VehicleParking':
       return <VehicleParking fromToSlot={fromTo} place={place} />
     case 'BikeRentalStation':
@@ -162,6 +173,7 @@ function getNearbyCoordsFromUrlOrLocationOrMapCenter(
 // eslint-disable-next-line complexity
 function NearbyView({
   activeNearbyFilters,
+  closedStops,
   currentPosition,
   currentServiceWeek,
   defaultLatLon,
@@ -178,6 +190,8 @@ function NearbyView({
   nearbyFilters,
   nearbyViewCoords,
   nearbyViewError,
+  onLocationFieldBlur,
+  onLocationFieldFocus,
   radius,
   routeSortComparator,
   sessionSearches,
@@ -191,6 +205,12 @@ function NearbyView({
   const intl = useIntl()
   const [loading, setLoading] = useState(true)
   const [reversedPoint, setReversedPoint] = useState('')
+  const [locationInputFocused, setLocationInputFocused] = useState(false)
+
+  const closedStopsSet = useMemo(
+    () => (closedStops ? flattenStopClosures(closedStops) : new Set<string>()),
+    [closedStops]
+  )
 
   const nearbyContainerRef = useRef<HTMLOListElement>(null)
   const finalNearbyCoords = useMemo(
@@ -279,7 +299,7 @@ function NearbyView({
 
   useEffect(() => {
     scrollToTop()
-    if (finalNearbyCoords) {
+    if (finalNearbyCoords && !locationInputFocused) {
       fetchNearby(finalNearbyCoords, radius, currentServiceWeek)
       setLoading(true)
       const interval = setInterval(() => {
@@ -290,7 +310,7 @@ function NearbyView({
         clearInterval(interval)
       }
     }
-  }, [finalNearbyCoords, fetchNearby, radius])
+  }, [finalNearbyCoords, fetchNearby, locationInputFocused, radius])
 
   useEffect(() => {
     if (nearbyViewError) {
@@ -368,6 +388,7 @@ function NearbyView({
         >
           {getNearbyItem(
             { ...n.place, distance: n.distance, nearbyRoutes },
+            closedStopsSet,
             feeds
           )}
         </div>
@@ -433,9 +454,17 @@ function NearbyView({
             name: reversedPoint
           }}
           LocationIconComponent={() => (
-            <Search style={{ marginRight: 5, padding: 5 }} />
+            <Search size={12} style={{ color: grey[700], marginTop: -2 }} />
           )}
           locationType="to"
+          onBlur={() => {
+            onLocationFieldBlur && onLocationFieldBlur()
+            setLocationInputFocused(false)
+          }}
+          onFocus={() => {
+            onLocationFieldFocus && onLocationFieldFocus()
+            setLocationInputFocused(true)
+          }}
           onLocationSelected={(selection) => {
             const { location } = selection
             setViewedNearbyCoords(location)
@@ -514,7 +543,7 @@ const mapStateToProps = (state: AppReduxState) => {
   const { config, location, transitIndex, ui } = state.otp
   const { map, nearbyView: nearbyViewConfig, routeViewer } = config
   const transitOperators = config?.transitOperators || []
-  const { nearbyView, nearbyViewCoords } = ui
+  const { nearbyView, nearbyViewCoords, stopClosures } = ui
   const { nearby } = transitIndex
   const { entityId } = state.router.location.query
   const { currentPosition, sessionSearches } = location
@@ -536,7 +565,6 @@ const mapStateToProps = (state: AppReduxState) => {
   if (nearbyViewConfig?.useRouteViewSort) {
     routeSortComparator = (a: PatternStopTime, b: PatternStopTime) =>
       coreUtils.route.makeRouteComparator(transitOperators)(
-        // @ts-expect-error core-utils types are wrong!
         a.pattern.route,
         b.pattern.route
       )
@@ -544,6 +572,7 @@ const mapStateToProps = (state: AppReduxState) => {
 
   return {
     activeNearbyFilters: filters,
+    closedStops: stopClosures.closedStops,
     currentPosition,
     currentServiceWeek,
     defaultLatLon,

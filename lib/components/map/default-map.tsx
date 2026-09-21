@@ -27,9 +27,11 @@ import {
   carRentalQuery,
   findFeeds,
   findStopTimesForStop,
+  getStopClosures,
   rentalVehicleQuery
 } from '../../actions/api'
 import { ComponentContext } from '../../util/contexts'
+import { flattenStopClosures } from '../../util/itinerary'
 import { getActiveItinerary, getActiveSearch } from '../../util/state'
 import {
   getCurrentPosition,
@@ -165,6 +167,7 @@ interface DefaultMapProps {
   bikeRentalStations: VehicleRentalStation[]
   carRentalQuery: () => void
   carRentalStations: VehicleRentalStation[]
+  closedStops?: Map<string, Set<string>>
   config: AppConfig
   getCurrentPosition: GetCurrentPositionFunction
   intl: IntlShape
@@ -200,6 +203,7 @@ class DefaultMap extends Component<DefaultMapProps> {
       zoom
     }
     this.geolocateControlRef = React.createRef<maplibregl.GeolocateControl>()
+    this.baseMapRef = React.createRef<maplibregl.Map>()
   }
 
   getNearbyViewFilteredOverlays = () => {
@@ -334,6 +338,8 @@ class DefaultMap extends Component<DefaultMapProps> {
 
     // Fetch feeds in the background
     this.props.findFeeds()
+    // Load closed stops into state for usage throughout UI (map popup, timetable, itinerary, etc.)
+    this.props.getStopClosures()
   }
 
   componentDidUpdate(prevProps) {
@@ -354,6 +360,7 @@ class DefaultMap extends Component<DefaultMapProps> {
       bikeRentalStations,
       carRentalQuery,
       carRentalStations,
+      closedStops,
       config,
       feeds,
       getCurrentPosition,
@@ -373,8 +380,13 @@ class DefaultMap extends Component<DefaultMapProps> {
     } = this.props
     const { getCustomMapOverlays, getTransitiveRouteLabel, ModeIcon } =
       this.context
-    const { baseLayers, maxZoom, navigationControlPosition, overlays } =
-      mapConfig || {}
+    const {
+      baseLayers,
+      maxZoom,
+      navigationControlPosition,
+      overlays,
+      showViewStopInPopup = true
+    } = mapConfig || {}
     const { lat, lon, zoom } = this.state
     const vectorTilesEndpoint = `${assembleBasePath(config)}${
       config.api?.path
@@ -386,6 +398,12 @@ class DefaultMap extends Component<DefaultMapProps> {
         (station) => station.vehicleType?.formFactor === 'BICYCLE'
       )
     ]
+
+    // Closed stops are stored as a map with route ID as the key; we just want a set
+    // of all the stop values
+    const closedStopIds = closedStops
+      ? flattenStopClosures(closedStops)
+      : new Set()
 
     const scooters = rentalVehicles.filter(
       (vehicle) => vehicle.vehicleType?.formFactor === 'SCOOTER'
@@ -421,6 +439,7 @@ class DefaultMap extends Component<DefaultMapProps> {
           }
           baseLayerNames={baseLayerNames}
           center={[lat, lon]}
+          innerRef={this.baseMapRef}
           mapLibreProps={{
             onLoad: () => {
               // Once this map has loaded, we subtly trigger the geolocate control to update its state.
@@ -461,6 +480,7 @@ class DefaultMap extends Component<DefaultMapProps> {
           />
           <TransitiveOverlay
             getTransitiveRouteLabel={getTransitiveRouteLabel}
+            mapRef={this.baseMapRef}
           />
           <TripViewerOverlay />
           <ElevationPointMarker />
@@ -535,11 +555,12 @@ class DefaultMap extends Component<DefaultMapProps> {
                   })),
                   vectorTilesEndpoint,
                   setLocation,
-                  setViewedStop,
+                  showViewStopInPopup && setViewedStop,
                   viewedRouteStops,
                   config.companies,
                   this.getEntityPrefix,
-                  feeds
+                  feeds,
+                  closedStopIds
                 )
               default:
                 return null
@@ -594,6 +615,7 @@ const mapStateToProps = (state) => {
     activeNearbyFilters,
     bikeRentalStations: state.otp.overlay.bikeRental.stations,
     carRentalStations: state.otp.overlay.carRental.stations,
+    closedStops: state.otp.ui.stopClosures.closedStops,
     config: state.otp.config,
     currentPositionError,
     feeds: state.otp.transitIndex.feeds,
@@ -615,6 +637,7 @@ const mapDispatchToProps = {
   findFeeds,
   findStopTimesForStop,
   getCurrentPosition,
+  getStopClosures,
   rentalVehicleQuery,
   setLocation,
   setMapPopupLocationAndGeocode,

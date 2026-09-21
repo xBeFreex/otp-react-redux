@@ -15,6 +15,8 @@ export interface StopTimeTrip {
 export interface StopTime {
   departureDelay?: number
   headsign: string
+  id?: string
+  name?: string
   pattern: Pattern
   realtimeDeparture?: number
   realtimeState?: string
@@ -24,9 +26,22 @@ export interface StopTime {
   trip: StopTimeTrip
 }
 
+export interface StopListEntry {
+  name: string
+  realtimeDeparture?: number
+  scheduledDeparture?: number
+  stopId: string
+}
+
+export interface TripStopTime {
+  scheduledDeparture: number
+  stop: Stop
+}
+
 export interface Pattern {
   desc: string
-  headsign: string
+  // Some agencies send explicit `null` headsigns.
+  headsign: string | null
   id: string
   patternGeometry?: {
     length: number
@@ -110,3 +125,10 @@ export type ZoomToPlaceHandler = (
 ) => void
 
 export type QueryParamChangeHandler = (event: any) => void
+
+export interface TimetableDataParams {
+  /** The desired service date for the timetable, as a Date object */
+  date: Date
+  /** The GTFS ID of the route for which a timetable is being fetched */
+  routeGtfsId: string
+}
