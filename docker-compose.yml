@@ -1,0 +1,7 @@
+services:
+  otp-react-redux:
+    image: ghcr.io/xbefreex/otp-react-redux:dev
+    container_name: otp-react-redux
+    ports:
+      - "3001:80"
+    restart: unless-stopped
