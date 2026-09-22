@@ -326,12 +326,22 @@ class MetroItinerary extends NarrativeItinerary {
       setActiveItinerary(itinerary)
       setActiveLeg(null, null)
       setItineraryView(ItineraryView.ITINERARY_OPEN)
-      // Reset the scroll. Refs would be the more
-      // appropriate way to do this, but they don't work
-      setTimeout(
-        () => document.querySelector('.itin-wrapper')?.scrollIntoView(),
-        10
-      )
+      // Reset the scroll on every scrollable ancestor (e.g. the floating
+      // sidebar card and any inner scroll containers) so the itinerary
+      // detail view opens fully visible from the top, instead of still
+      // scrolled down. The search form itself is hidden via CSS while the
+      // detail view is open, so scrolling to 0 is enough to reveal it.
+      // Refs would be the more appropriate way to do this, but they don't work.
+      setTimeout(() => {
+        let el: Element | null = document.querySelector('.itin-wrapper')
+        while (el) {
+          const { overflowY } = window.getComputedStyle(el)
+          if (overflowY === 'auto' || overflowY === 'scroll') {
+            el.scroll({ top: 0 })
+          }
+          el = el.parentElement
+        }
+      }, 10)
     }
     const formattedFare = intl.formatNumber(transitFare, {
       currency: fareCurrency,

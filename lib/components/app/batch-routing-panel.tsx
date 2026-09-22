@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { FormattedMessage, injectIntl, IntlShape } from 'react-intl'
+import coreUtils from '@opentripplanner/core-utils'
 import React, { Component, FormEvent } from 'react'
 
 import * as apiActions from '../../actions/api'
@@ -13,6 +14,7 @@ import {
 } from '../form/styled'
 import { alertUserTripPlan } from '../form/util'
 import { getActiveSearch, getShowUserSettings } from '../../util/state'
+import { getItineraryView, ItineraryView } from '../../util/ui'
 import { getPersistenceMode } from '../../util/user'
 import AdvancedSettingsPanel from '../form/advanced-settings-panel'
 import BatchSettings from '../form/batch-settings'
@@ -27,6 +29,7 @@ interface Props {
   activeSearch: any
   currentQuery: any
   intl: IntlShape
+  itineraryIsExpanded: boolean
   mainPanelContent: number
   mobile?: boolean
   routingQuery: () => void
@@ -100,7 +103,13 @@ class BatchRoutingPanel extends Component<Props> {
   }
 
   render() {
-    const { activeSearch, intl, mobile, showUserSettings } = this.props
+    const {
+      activeSearch,
+      intl,
+      itineraryIsExpanded,
+      mobile,
+      showUserSettings
+    } = this.props
     const { planTripClicked } = this.state
     const mapAction = mobile
       ? intl.formatMessage({
@@ -135,7 +144,10 @@ class BatchRoutingPanel extends Component<Props> {
           <form
             className="form"
             onSubmit={this.handleSubmit}
-            style={{ padding: '10px' }}
+            style={{
+              display: !mobile && itineraryIsExpanded ? 'none' : undefined,
+              padding: '10px'
+            }}
           >
             <TransitionGroup style={{ display: 'content' }}>
               {this.state.showAdvancedModeSettings && (
@@ -255,10 +267,21 @@ const mapStateToProps = (state: any) => {
       getPersistenceMode(state.otp.config.persistence).isLocalStorage)
   const { mainPanelContent } = state.otp.ui
   const currentQuery = state.otp.currentQuery
+  const activeSearch = getActiveSearch(state)
+  const urlParams = coreUtils.query.getUrlParams()
+  const itineraryView = getItineraryView(urlParams)
+  const showDetails =
+    itineraryView === ItineraryView.ITINERARY_OPEN ||
+    itineraryView === ItineraryView.LEG ||
+    itineraryView === ItineraryView.LEG_HIDDEN
+  const activeItinerary = (activeSearch as any)?.activeItinerary
+  const itineraryIsExpanded =
+    activeItinerary !== undefined && activeItinerary !== null && showDetails
 
   return {
-    activeSearch: getActiveSearch(state),
+    activeSearch,
     currentQuery,
+    itineraryIsExpanded,
     mainPanelContent,
     showUserSettings
   }

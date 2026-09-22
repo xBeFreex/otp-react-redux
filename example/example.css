@@ -64,6 +64,14 @@ body,
   width: 100% !important;
 }
 
+/* The mobile results screen's map is not nested under .main-row, so the rule
+   above never applies to it. Without an explicit height, the nested
+   .map-container divs collapse to 0px and the map canvas gets clipped by an
+   ancestor's overflow: hidden, rendering as a blank area. */
+.mobile-results-map .map-container {
+  height: 100%;
+}
+
 /* Sidebar becomes a floating card on top of the map instead of a fixed column.
    Height is fixed (not auto) because internal components (e.g. the advanced
    settings panel transition) rely on their ancestor having a definite
@@ -72,12 +80,12 @@ body,
   background: #fff;
   border-radius: var(--brand-radius);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
-  height: calc(100% - 40px) !important;
+  height: calc(100% - 20px) !important;
   left: 20px;
   overflow-y: auto;
   padding: 0;
   position: absolute;
-  top: 20px;
+  top: 10px;
   width: 400px !important;
   z-index: 1000;
 }
